@@ -1,0 +1,27 @@
+=== Phase 9: Session Manager 0day挖掘 ===
+
+## Target: Session Manager Plugin
+
+### Code Locations
+- agent/session/plugins/
+- agent/session/
+
+### Potential Vulnerabilities
+
+1. **WebSocket MITM**
+   - Issue: WebSocket communication may not validate certificates
+   - Impact: Man-in-the-middle attacks on session traffic
+
+2. **Port Forwarding ACL Bypass**
+   - Issue: Source port restrictions may be bypassed
+   - Impact: Access to unauthorized ports
+
+3. **Session Recording Bypass**
+   - Issue: Recording can be disabled by user
+   - Impact: Audit trail bypass
+
+4. **Shell Spawn Without TTY**
+   - Issue: Non-interactive shells may skip logging
+   - Impact: Unlogged command execution
+
+## Finding: HIGH - WebSocket certificate validation needed

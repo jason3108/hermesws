@@ -1,0 +1,4 @@
+=== TARGET INFO ===
+Name: AWS SSM Agent
+Path: /home/ubuntu/hermes/repo/ssm-agent
+Date: 2026-04-16

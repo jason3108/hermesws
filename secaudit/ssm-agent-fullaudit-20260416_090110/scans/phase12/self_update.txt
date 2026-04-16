@@ -1,0 +1,23 @@
+=== Phase 12: Self-Update 0day挖掘 ===
+
+## Target: SSM Agent Auto-Update
+
+### Code Locations
+- agent/version/
+- agent/updater/
+
+### Potential Vulnerabilities
+
+1. **Unsigned Updates**
+   - Issue: Update packages may not be signature verified
+   - Impact: Arbitrary code execution
+   
+2. **Update Channel Injection**
+   - Issue: Update channel can be manipulated
+   - Impact: Receive malicious updates
+
+3. **Rollback Attacks**
+   - Issue: Can downgrade to vulnerable version
+   - Impact: Re-introduce known CVEs
+
+## Finding: HIGH - Code signing verification needed

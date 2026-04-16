@@ -1,0 +1,30 @@
+=== Key Security-Relevant Directories ===
+
+agent/plugins/runscript:
+  - runscript_test.go
+  - runscript_unix_test.go
+  - runpowershellscript.go
+  - runscript.go
+  - runscript_windows_test.go
+  - runshellscript.go
+
+agent/plugins/rundocument:
+  - rundocument.go
+  - rundocument_test.go
+  - rundocument_unix_test.go
+  - rundocument_windows_test.go
+  - execdoc.go
+
+agent/session/plugins:
+
+core/executor:
+  - executor_darwin_test.go
+  - executor_windows_test.go
+  - executor_test.go
+  - executor.go
+  - executor_darwin.go
+  - executor_windows.go
+  - executor_unix_test.go
+  - executor_unix.go
+
+agent/framework:

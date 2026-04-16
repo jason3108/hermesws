@@ -1,0 +1,10 @@
+=== dim5_creds_logging ===
+Total: 7 matches in 7 files
+
+/agent/agent.go: 1
+/agent/task/pool.go: 1
+/agent/agentlogstocloudwatch/cloudwatchlogspublisher/cloudwatchlogs_publisher.go: 1
+/agent/session/datachannel/datachannel.go: 1
+/agent/session/shell/shell_windows.go: 1
+/agent/session/controlchannel/controlchannel.go: 1
+/agent/plugins/downloadcontent/gitresource/github/privategithub/githubclient/githubclient.go: 1

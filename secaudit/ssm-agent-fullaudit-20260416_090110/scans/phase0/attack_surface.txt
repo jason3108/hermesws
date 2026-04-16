@@ -1,0 +1,28 @@
+
+=== AWS SSM Agent 攻击面识别 ===
+
+【输入处理链】
+- 用户通过 AWS SSM API 发送命令/脚本
+- SSM Agent 接收并执行
+- 输入类型: Shell Script, PowerShell, Python, JSON 参数
+
+【认证授权链】
+- 使用 EC2 Instance Profile 凭证
+- 与 AWS SSM 服务 HTTPS 通信
+- 基于 IAM 角色执行命令
+
+【状态机/生命周期】
+- Command 生命周期: Pending -> InProgress -> Success/Failed
+- Session 管理 (Session Manager)
+- Plugin 加载机制
+
+【外部依赖链】
+- AWS SSM Service API
+- EC2 Metadata Service
+- S3 (下载插件/包)
+- Git (self-update)
+
+【高价值资产】
+- EC2 Instance Profile 凭证
+- 目标主机 root/SYSTEM 权限
+- 可访问的元数据服务

@@ -1,0 +1,21 @@
+=== dim7_container ===
+Total: 42 matches in 18 files
+
+/agent/startup/startup_windows.go: 10
+/agent/backoffconfig/backoffconfig.go: 5
+/agent/framework/docmanager/docmanager.go: 5
+/agent/platform/wmi.go: 4
+/agent/fileutil/fileutil_unix.go: 2
+/agent/startup/model/model.go: 2
+/agent/setupcli/setupcli.go: 2
+/agent/executers/executers.go: 2
+/common/telemetry/meter.go: 1
+/common/telemetry/metric/metric.go: 1
+/common/identity/credentialproviders/sharedprovider/sharedprovider.go: 1
+/agent/fileutil/fileutil_windows.go: 1
+/agent/setupcli/managers/configurationmanager/helpers.go: 1
+/agent/hibernation/hibernation.go: 1
+/agent/session/retry/retryer.go: 1
+/agent/session/shell/shell_unix.go: 1
+/agent/telemetry/exporter/control_channel_exporter/control_channel_exporter.go: 1
+/agent/sdkutil/stoppolicy.go: 1

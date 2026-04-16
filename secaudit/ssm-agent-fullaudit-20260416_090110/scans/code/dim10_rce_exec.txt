@@ -1,0 +1,23 @@
+=== dim10_rce_exec ===
+Total: 80 matches in 42 files
+
+/agent/plugins/configurepackage/envdetect/osdetect/osdetect_unix.go: 10
+/agent/session/shell/shell_unix.go: 9
+/agent/platform/platform_unix.go: 4
+/agent/startup/startup_windows_dep.go: 3
+/agent/setupcli/managers/common/exechelper.go: 3
+/agent/longrunning/plugin/rundaemon/rundaemon_windows.go: 3
+/agent/updateutil/updateconstants/constants.go: 2
+/agent/cli/diagnostics/service_check_unix.go: 2
+/agent/executers/executers.go: 2
+/agent/session/shell/shell_windows.go: 2
+/agent/plugins/inventory/gatherers/instancedetailedinformation/dataProvider_windows.go: 2
+/agent/plugins/inventory/gatherers/instancedetailedinformation/dataProvider_unix.go: 2
+/agent/plugins/inventory/gatherers/instancedetailedinformation/dataProvider_darwin.go: 2
+/agent/plugins/inventory/gatherers/network/dataProvider_windows.go: 2
+/agent/plugins/inventory/gatherers/application/dataProvider_windows.go: 2
+/agent/plugins/inventory/gatherers/application/dataProvider_unix.go: 2
+/agent/plugins/inventory/gatherers/application/dataProvider_darwin.go: 2
+/agent/rebooter/rebooter_windows.go: 2
+/common/utility/utilty_unix.go: 1
+/common/utility/utility_windows.go: 1

@@ -1,0 +1,23 @@
+=== dim1_auth_session ===
+Total: 1330 matches in 119 files
+
+/agent/session/shell/shell.go: 98
+/agent/session/datachannel/datachannel.go: 69
+/agent/session/plugins/port/port.go: 59
+/agent/framework/docparser/docparser.go: 53
+/agent/session/plugins/port/port_mux.go: 50
+/agent/session/contracts/model.go: 48
+/agent/session/plugins/sessionplugin/sessionplugin.go: 45
+/agent/session/contracts/agentmessage.go: 44
+/agent/messageservice/messagehandler/processorwrappers/sessionworkerprocessorwrapper.go: 35
+/agent/session/shell/shell_unix.go: 35
+/agent/messageservice/interactor/mgsinteractor/replytypes/sessioncompletereplytype.go: 34
+/agent/appconfig/constants.go: 30
+/agent/session/plugins/port/port_basic.go: 27
+/agent/framework/processor/executer/plugin/plugin.go: 27
+/agent/framework/docmanager/docmanager.go: 25
+/agent/session/datachannel/mocks/IDataChannel.go: 24
+/agent/session/utility/utility_windows.go: 24
+/agent/session/plugins/singlecommand/singlecommand.go: 21
+/agent/messageservice/utils/processorworkerconfigutil.go: 19
+/agent/session/shell/shell_windows.go: 19

@@ -1,0 +1,23 @@
+=== dim3_injection_path ===
+Total: 312 matches in 108 files
+
+/agent/appconfig/constants_windows.go: 40
+/agent/updateutil/updateutil.go: 12
+/agent/plugins/configurepackage/localpackages/localpackages.go: 12
+/agent/fileutil/fileutil.go: 11
+/agent/appconfig/constants_unix.go: 11
+/agent/framework/coremanager/coremanager.go: 9
+/agent/telemetry/collector/utils/rolling_utils.go: 9
+/agent/log/logger/eventlog.go: 9
+/common/filewatcherbasedipc/filewatcherchannel.go: 6
+/core/app/selfupdate/selfupdate.go: 6
+/agent/update/processor/processor.go: 6
+/agent/setupcli/managers/packagemanagers/windowsmanager.go: 6
+/agent/setupcli/managers/configurationmanager/configurationmanager.go: 6
+/agent/version/versiongenerator/version-gen.go: 6
+/agent/messageservice/messagehandler/idempotency/idempotency.go: 5
+/agent/managedInstances/vault/fsvault/fsvault.go: 5
+/agent/session/shell/shell_windows.go: 5
+/agent/framework/docmanager/docmanager.go: 5
+/agent/fileutil/artifact/artifact.go: 4
+/agent/setupcli/setupcli.go: 4

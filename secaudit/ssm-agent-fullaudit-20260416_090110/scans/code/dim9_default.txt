@@ -1,0 +1,23 @@
+=== dim9_default ===
+Total: 116 matches in 45 files
+
+/agent/appconfig/constants.go: 17
+/agent/appconfig/constants_unix.go: 14
+/agent/appconfig/constants_darwin.go: 10
+/agent/appconfig/constants_windows.go: 8
+/core/app/selfupdate/constants.go: 5
+/agent/session/utility/utility.go: 5
+/agent/update/processor/processor.go: 4
+/agent/session/utility/utility_windows.go: 4
+/core/app/credentialrefresher/credentialrefresher.go: 3
+/agent/updateutil/updateconstants/constants.go: 3
+/agent/session/shell/shell_windows.go: 3
+/common/message/model_unix.go: 2
+/common/message/model_windows.go: 2
+/common/message/model_darwin.go: 2
+/common/identity/endpoint/endpoint.go: 2
+/agent/plugins/configurecontainers/windowscontainerutil/windowscontainerutil.go: 2
+/agent/s3util/riputil.go: 2
+/common/channel/utils/common.go: 1
+/common/utility/utility_windows.go: 1
+/common/identity/credentialproviders/ssmclient/ssmclient.go: 1

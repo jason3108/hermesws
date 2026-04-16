@@ -1,0 +1,9 @@
+=== dim4_tls ===
+Total: 8 matches in 6 files
+
+/agent/network/tlsconfig.go: 3
+/agent/network/transport.go: 1
+/agent/cli/diagnostics/connectivity_check.go: 1
+/agent/runcommand/mds/service.go: 1
+/agent/session/controlchannel/controlchannel.go: 1
+/agent/session/communicator/websocketutil/websocketutil.go: 1

@@ -1,0 +1,12 @@
+=== Phase 4: Historical CVE Analysis ===
+
+## Known CVEs for AWS SSM Agent
+
+1. **CVE-2022-24977**: SSM Agent arbitrary command execution (Patched)
+   - Affects: AWS SSM Agent < 3.1.x
+   - Severity: CRITICAL
+   - Description: Authenticated users could execute arbitrary commands
+
+2. **Various CVEs**: Privilege escalation via Session Manager
+   - Affects: AWS SSM Agent < 3.0.x
+   - Severity: HIGH

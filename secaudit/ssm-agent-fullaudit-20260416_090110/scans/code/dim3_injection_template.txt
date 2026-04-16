@@ -1,0 +1,4 @@
+=== dim3_injection_template ===
+Total: 1 matches in 1 files
+
+/agent/version/versiongenerator/version-gen.go: 1

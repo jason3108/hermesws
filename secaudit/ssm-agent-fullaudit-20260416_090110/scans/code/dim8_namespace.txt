@@ -1,0 +1,23 @@
+=== dim8_namespace ===
+Total: 422 matches in 40 files
+
+/common/telemetry/emitter/emitter.go: 77
+/agent/telemetry/dynamic_configuration/dynamic_configuration.go: 31
+/agent/telemetry/collector/consumer.go: 30
+/agent/telemetry/collector/internal/log/rolling/rolling_logcollector.go: 30
+/agent/telemetry/collector/internal/metric/rolling/rolling_disk_metric.go: 28
+/agent/telemetry/exporter/control_channel_exporter/control_channel_exporter.go: 25
+/agent/telemetry/collector/internal/collector.go: 23
+/agent/telemetry/collector/internal/metric/inmemory/in_memory_metric.go: 22
+/agent/telemetry/collector/internal/mocks/metric_mocks.go: 15
+/common/telemetry/emitter/mocks/mock_emitter.go: 12
+/agent/telemetry/collector/utils/rolling_utils.go: 12
+/core/app/context/context.go: 11
+/agent/context/context.go: 11
+/common/telemetry/meter.go: 10
+/agent/log/logger/wrapper.go: 8
+/common/telemetry/telemetry.go: 7
+/agent/telemetry/collector/singleton.go: 7
+/agent/mocks/log/test_log.go: 7
+/common/telemetry/log.go: 6
+/agent/telemetry/collector/internal/mocks/log_mocks.go: 6

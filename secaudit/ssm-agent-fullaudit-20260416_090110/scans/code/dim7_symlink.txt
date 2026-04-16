@@ -1,0 +1,7 @@
+=== dim7_symlink ===
+Total: 7 matches in 4 files
+
+/agent/setupcli/setupcli.go: 3
+/agent/cli/diagnosticsutil/diagnosticsutil_unix.go: 2
+/agent/setupcli/managers/packagemanagers/windowsmanager.go: 1
+/agent/telemetry/collector/utils/rolling_utils.go: 1

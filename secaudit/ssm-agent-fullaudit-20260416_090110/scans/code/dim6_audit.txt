@@ -1,0 +1,23 @@
+=== dim6_audit ===
+Total: 213 matches in 27 files
+
+/agent/log/logger/eventlog.go: 73
+/agent/session/telemetry/eventlog.go: 55
+/core/app/credentialrefresher/credentialrefresher.go: 18
+/agent/session/telemetry/mocks/IAuditLogTelemetry.go: 10
+/agent/session/controlchannel/controlchannel.go: 8
+/core/app/selfupdate/selfupdate.go: 7
+/agent/appconfig/constants.go: 6
+/agent/appconfig/appconfig_parser.go: 5
+/agent/update/processor/progress.go: 4
+/agent/log/logger/eventlogmodel.go: 4
+/agent/log/logger/wrapper.go: 3
+/agent/messageservice/interactor/mgsinteractor/mgsinteractor.go: 2
+/agent/messageservice/interactor/mgsinteractor/sendreply.go: 2
+/agent/ssm/rsaauth/v4.go: 2
+/agent/appconfig/appconfig.go: 2
+/core/agent.go: 1
+/agent/agent.go: 1
+/agent/ssm/anonauth/anonauth_client.go: 1
+/agent/ssm/rsaauth/ssm_rsaV4.go: 1
+/agent/ssm/authregister/authregister_client.go: 1

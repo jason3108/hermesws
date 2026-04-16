@@ -1,0 +1,27 @@
+=== Path B: AWS SSM Automation SaaS Public Access Research ===
+
+## Service Endpoint
+- Region-specific: https://ssm.{region}.amazonaws.com
+- Global: https://ssm.us-east-1.amazonaws.com
+
+## API Endpoints (Publicly Accessible)
+1. CreateActivation - Register on-premises machines
+2. ListAssociations - List SSM associations  
+3. SendCommand - Send commands to instances
+4. GetCommandInvocation - Get command results
+5. StartSession - Start Session Manager session
+6. DescribeInstanceInformation - List managed instances
+
+## Authentication Mechanisms
+1. IAM Access Keys - Primary authentication
+2. IAM Roles - For EC2 instance profile
+3. Session Token - Temporary credentials
+4. Service-linked roles - For SSM service
+
+## Attack Surface (Public Internet)
+- 15+ public API endpoints
+- IAM misconfiguration exploitation
+- Privilege escalation via SSM documents
+- Cross-account access via shared SSM documents
+
+## Risk Assessment: HIGH

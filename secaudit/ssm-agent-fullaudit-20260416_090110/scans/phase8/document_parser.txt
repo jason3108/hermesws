@@ -1,0 +1,25 @@
+=== Phase 8: Document Parser 0day挖掘 ===
+
+## Target: SSM Document JSON Parsing
+
+### Code Locations
+- agent/framework/runcommand/plugins.go
+- agent/plugins/rundocument/
+- agent/ssmdocument/
+
+### Potential Vulnerabilities
+
+1. **JSON Schema Bypass**
+   - Issue: Missing strict schema validation
+   - Impact: Custom document types could execute arbitrary commands
+   
+2. **Plugin Loading Path Traversal**
+   - File: agent/framework/pluginManager.go
+   - Issue: Plugin path not validated
+   - Impact: Load malicious plugins from arbitrary paths
+
+3. **Parameter Injection via $$**
+   - SSM uses $$ for variable substitution
+   - Potential: $$ could be used for injection
+
+## Finding: MEDIUM - JSON validation needs strengthening

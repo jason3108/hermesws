@@ -1,0 +1,23 @@
+=== dim2_rbac_permission ===
+Total: 1396 matches in 723 files
+
+/agent/plugins/inventory/gatherers/role/dataProvider.go: 89
+/common/identity/credentialproviders/ec2roleprovider/ec2_role_provider.go: 47
+/common/identity/credentialproviders/ec2roleprovider/mocks/IEC2RoleProvider.go: 27
+/common/identity/availableidentities/ec2/ec2_identity.go: 27
+/agent/framework/processor/executer/outofproc/messaging/backend.go: 26
+/agent/setupcli/setupcli.go: 24
+/agent/session/utility/utility_windows.go: 24
+/agent/ssm/authtokenrequest/authtokenrequest_client.go: 22
+/agent/ssm/authtokenrequest/mocks/ISsmSdk.go: 22
+/common/identity/credentialproviders/ssmec2roleprovider/ssm_ec2_role_provider.go: 20
+/common/identity/credentialproviders/onpremprovider/role_provider.go: 19
+/common/utility/utility_windows.go: 16
+/agent/plugins/inventory/gatherers/role/roleGatherer.go: 16
+/agent/plugins/downloadcontent/downloadcontent.go: 16
+/agent/ssm/authtokenrequest/mocks/IClient.go: 14
+/agent/fileutil/fileutil_windows.go: 13
+/common/identity/credentialproviders/iirprovider/iir_role_provider.go: 11
+/agent/fileutil/harden_windows.go: 11
+/core/agent_parser.go: 10
+/agent/appconfig/constants_unix.go: 10

@@ -1,0 +1,8 @@
+=== dim1_auth_anonymous ===
+Total: 10 matches in 5 files
+
+/agent/ssm/anonauth/anonauth_client.go: 3
+/agent/ssm/rsaauth/v4.go: 3
+/agent/ssm/rsaauth/ssm_rsaV4.go: 2
+/agent/ssm/authregister/authregister_client.go: 1
+/agent/s3util/crossregion.go: 1

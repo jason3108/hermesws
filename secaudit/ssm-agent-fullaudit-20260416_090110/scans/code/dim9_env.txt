@@ -1,0 +1,23 @@
+=== dim9_env ===
+Total: 41 matches in 20 files
+
+/agent/setupcli/setupcli.go: 9
+/agent/plugins/configurecontainers/windowscontainerutil/windowscontainerutil.go: 6
+/agent/appconfig/constants_windows.go: 5
+/agent/plugins/configurepackage/ssminstaller/ssminstaller.go: 3
+/common/identity/availableidentities/ecs/ecs_metadata.go: 2
+/agent/proxyconfig/proxy_windows.go: 2
+/agent/update/processor/processor.go: 1
+/agent/managedInstances/sharedCredentials/shared_Credentials_unix.go: 1
+/agent/managedInstances/sharedCredentials/shared_Credentials.go: 1
+/agent/managedInstances/sharedCredentials/shared_Credentials_windows.go: 1
+/agent/setupcli/managers/common/constants.go: 1
+/agent/setupcli/managers/configurationmanager/configurationmanager_windows.go: 1
+/agent/session/shell/shell_unix.go: 1
+/agent/proxyconfig/proxy.go: 1
+/agent/plugins/application/application.go: 1
+/agent/plugins/psmodule/psmodule.go: 1
+/agent/plugins/inventory/gatherers/application/dataProvider_windows.go: 1
+/agent/plugins/inventory/gatherers/file/dataProvider.go: 1
+/agent/plugins/updateec2config/updateec2config.go: 1
+/agent/rebooter/rebooter_windows.go: 1

@@ -1,0 +1,7 @@
+=== dim10_rce_plugin ===
+Total: 4 matches in 4 files
+
+/agent/association/frequentcollector/frequentcollector.go: 1
+/agent/session/plugins/noninteractivecommands/noninteractivecommands.go: 1
+/agent/session/plugins/interactivecommands/interactivecommands.go: 1
+/agent/session/plugins/sessionplugin/sessionplugin.go: 1

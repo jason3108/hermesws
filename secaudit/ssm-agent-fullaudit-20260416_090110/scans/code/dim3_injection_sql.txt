@@ -1,0 +1,6 @@
+=== dim3_injection_sql ===
+Total: 7 matches in 3 files
+
+/agent/ssm/rsaauth/v4.go: 4
+/agent/ssm/rsaauth/ssm_rsaV4.go: 2
+/agent/session/communicator/websocketchannel.go: 1
