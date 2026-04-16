@@ -1,0 +1,169 @@
+./cmd/argocd/commands/admin/settings_rbac.go:420:	return enf.Enforce(subject, realResource, action, subResource)
+./server/certificate/certificate.go:32:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceCertificates, rbac.ActionGet, ""); err != nil {
+./server/certificate/certificate.go:48:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceCertificates, rbac.ActionCreate, ""); err != nil {
+./server/certificate/certificate.go:61:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceCertificates, rbac.ActionDelete, ""); err != nil {
+./server/application/application.go:164:// getAppEnforceRBAC gets the Application with the given name in the given namespace. If no namespace is
+./server/application/application.go:174:func (s *Server) getAppEnforceRBAC(ctx context.Context, action, project, namespace, name string, getApp func() (*v1alpha1.Application, error)) (*v1alpha1.Application, *v1alpha1.AppProject, error) {
+./server/application/application.go:187:		if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplications, action, givenRBACName); err != nil {
+./server/application/application.go:217:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplications, action, a.RBACName(s.ns)); err != nil {
+./server/application/application.go:253:// getApplicationEnforceRBACInformer uses an informer to get an Application. If the app does not exist, permission is
+./server/application/application.go:256:func (s *Server) getApplicationEnforceRBACInformer(ctx context.Context, action, project, namespace, name string) (*v1alpha1.Application, *v1alpha1.AppProject, error) {
+./server/application/application.go:258:	return s.getAppEnforceRBAC(ctx, action, project, namespaceOrDefault, name, func() (*v1alpha1.Application, error) {
+./server/application/application.go:266:// getApplicationEnforceRBACClient uses a client to get an Application. If the app does not exist, permission is denied,
+./server/application/application.go:269:func (s *Server) getApplicationEnforceRBACClient(ctx context.Context, action, project, namespace, name, resourceVersion string) (*v1alpha1.Application, *v1alpha1.AppProject, error) {
+./server/application/application.go:271:	return s.getAppEnforceRBAC(ctx, action, project, namespaceOrDefault, name, func() (*v1alpha1.Application, error) {
+./server/application/application.go:320:		if s.enf.Enforce(ctx.Value("claims"), rbac.ResourceApplications, rbac.ActionGet, a.RBACName(s.ns)) {
+./server/application/application.go:352:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplications, rbac.ActionCreate, a.RBACName(s.ns)); err != nil {
+./server/application/application.go:417:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplications, rbac.ActionUpdate, a.RBACName(s.ns)); err != nil {
+./server/application/application.go:493:	a, proj, err := s.getApplicationEnforceRBACInformer(ctx, rbac.ActionGet, q.GetProject(), q.GetAppNamespace(), q.GetName())
+./server/application/application.go:654:	a, proj, err := s.getApplicationEnforceRBACInformer(ctx, rbac.ActionGet, query.GetProject(), query.GetAppNamespace(), query.GetName())
+./server/application/application.go:786:	a, proj, err := s.getApplicationEnforceRBACClient(ctx, rbac.ActionGet, project, appNs, appName, q.GetResourceVersion())
+./server/application/application.go:882:	a, p, err := s.getApplicationEnforceRBACInformer(ctx, rbac.ActionGet, q.GetProject(), q.GetAppNamespace(), q.GetName())
+./server/application/application.go:950:	app, proj, err := s.getApplicationEnforceRBACClient(ctx, action, currentProject, newApp.Namespace, newApp.Name, "")
+./server/application/application.go:1038:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplications, rbac.ActionUpdate, a.RBACName(s.ns)); err != nil {
+./server/application/application.go:1054:	a, _, err := s.getApplicationEnforceRBACClient(ctx, rbac.ActionUpdate, q.GetProject(), q.GetAppNamespace(), q.GetName(), "")
+./server/application/application.go:1073:	app, _, err := s.getApplicationEnforceRBACClient(ctx, rbac.ActionGet, q.GetProject(), q.GetAppNamespace(), q.GetName(), "")
+./server/application/application.go:1078:	err = s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplications, rbac.ActionUpdate, app.RBACName(s.ns))
+./server/application/application.go:1147:	a, _, err := s.getApplicationEnforceRBACClient(ctx, rbac.ActionGet, q.GetProject(), appNs, appName, "")
+./server/application/application.go:1155:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplications, rbac.ActionDelete, a.RBACName(s.ns)); err != nil {
+./server/application/application.go:1222:	if !s.enf.Enforce(claims, rbac.ResourceApplications, rbac.ActionGet, a.RBACName(s.ns)) {
+./server/application/application.go:1329:		if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplications, rbac.ActionCreate, app.RBACName(s.ns)); err != nil {
+./server/application/application.go:1333:		if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplications, rbac.ActionUpdate, currApp.RBACName(s.ns)); err != nil {
+./server/application/application.go:1458:	a, p, err := s.getApplicationEnforceRBACInformer(ctx, action, q.GetProject(), q.GetAppNamespace(), q.GetName())
+./server/application/application.go:1461:		a, _, err = s.getApplicationEnforceRBACInformer(ctx, action, q.GetProject(), q.GetAppNamespace(), q.GetName())
+./server/application/application.go:1603:	a, _, err := s.getApplicationEnforceRBACInformer(ctx, rbac.ActionGet, q.GetProject(), q.GetAppNamespace(), q.GetApplicationName())
+./server/application/application.go:1612:	_, _, err := s.getApplicationEnforceRBACInformer(ws.Context(), rbac.ActionGet, q.GetProject(), q.GetAppNamespace(), q.GetApplicationName())
+./server/application/application.go:1629:	a, proj, err := s.getApplicationEnforceRBACInformer(ctx, rbac.ActionGet, q.GetProject(), q.GetAppNamespace(), q.GetName())
+./server/application/application.go:1657:	a, _, err := s.getApplicationEnforceRBACInformer(ctx, rbac.ActionGet, q.GetProject(), q.GetAppNamespace(), q.GetName())
+./server/application/application.go:1687:	a, proj, err := s.getApplicationEnforceRBACInformer(ctx, rbac.ActionGet, q.GetProject(), q.GetAppNamespace(), q.GetName())
+./server/application/application.go:1792:	a, _, err := s.getApplicationEnforceRBACInformer(ctx, rbac.ActionGet, q.GetProject(), q.GetAppNamespace(), q.GetApplicationName())
+./server/application/application.go:1849:	a, p, err := s.getApplicationEnforceRBACInformer(ws.Context(), rbac.ActionGet, q.GetProject(), q.GetAppNamespace(), q.GetName())
+./server/application/application.go:1854:	if err := s.enf.EnforceErr(ws.Context().Value("claims"), rbac.ResourceLogs, rbac.ActionGet, a.RBACName(s.ns)); err != nil {
+./server/application/application.go:2045:	a, proj, err := s.getApplicationEnforceRBACClient(ctx, rbac.ActionGet, syncReq.GetProject(), syncReq.GetAppNamespace(), syncReq.GetName(), "")
+./server/application/application.go:2060:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplications, rbac.ActionSync, a.RBACName(s.ns)); err != nil {
+./server/application/application.go:2065:		if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplications, rbac.ActionOverride, a.RBACName(s.ns)); err != nil {
+./server/application/application.go:2182:				// Enforce that they have the 'override' privilege if the setting is enabled
+./server/application/application.go:2184:					if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplications, rbac.ActionOverride, a.RBACName(s.ns)); err != nil {
+./server/application/application.go:2207:		// Enforce that they have the 'override' privilege if the setting is enabled
+./server/application/application.go:2209:			if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplications, rbac.ActionOverride, a.RBACName(s.ns)); err != nil {
+./server/application/application.go:2227:	a, _, err := s.getApplicationEnforceRBACClient(ctx, rbac.ActionSync, rollbackReq.GetProject(), rollbackReq.GetAppNamespace(), rollbackReq.GetName(), "")
+./server/application/application.go:2289:	a, proj, err := s.getApplicationEnforceRBACClient(ctx, rbac.ActionGet, req.GetProject(), req.GetNamespace(), req.GetName(), "")
+./server/application/application.go:2470:	a, _, err := s.getApplicationEnforceRBACClient(ctx, rbac.ActionSync, termOpReq.GetProject(), appNs, appName, "")
+./server/application/application.go:2545:		app, p, err = s.getApplicationEnforceRBACInformer(ctx, rbacRequest, q.GetProject(), q.GetAppNamespace(), q.GetName())
+./server/application/application.go:2554:		err = s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplications, rbacRequest, app.RBACName(s.ns))
+./server/application/application.go:2840:	a, proj, err := s.getApplicationEnforceRBACClient(ctx, rbac.ActionGet, q.GetProject(), q.GetAppNamespace(), q.GetName(), "")
+./server/application/application.go:2942:	a, _, err := s.getApplicationEnforceRBACInformer(ctx, rbac.ActionGet, q.GetProject(), q.GetAppNamespace(), q.GetAppName())
+./server/application/websocket.go:140:	if err := t.terminalOpts.Enf.EnforceErr(t.ctx.Value("claims"), rbac.ResourceApplications, rbac.ActionGet, t.appRBACName); err != nil {
+./server/application/websocket.go:148:	if err := t.terminalOpts.Enf.EnforceErr(t.ctx.Value("claims"), rbac.ResourceExec, rbac.ActionCreate, t.appRBACName); err != nil {
+./server/application/terminal.go:150:	if err := s.terminalOptions.Enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplications, rbac.ActionGet, appRBACName); err != nil {
+./server/application/terminal.go:155:	if err := s.terminalOptions.Enf.EnforceErr(ctx.Value("claims"), rbac.ResourceExec, rbac.ActionCreate, appRBACName); err != nil {
+./server/account/account.go:51:		if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceAccounts, rbac.ActionUpdate, q.Name); err != nil {
+./server/account/account.go:129:	ok := s.enf.Enforce(ctx.Value("claims"), r.Resource, r.Action, r.Subresource)
+./server/account/account.go:163:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceAccounts, action, account); err != nil {
+./server/gpgkey/gpgkey.go:32:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceGPGKeys, rbac.ActionGet, ""); err != nil {
+./server/gpgkey/gpgkey.go:50:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceGPGKeys, rbac.ActionGet, ""); err != nil {
+./server/gpgkey/gpgkey.go:73:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceGPGKeys, rbac.ActionCreate, ""); err != nil {
+./server/gpgkey/gpgkey.go:102:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceGPGKeys, rbac.ActionDelete, ""); err != nil {
+./server/repository/repository.go:144:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceRepositories, rbac.ActionGet, createRBACObject(repo.Project, repo.Repo)); err != nil {
+./server/repository/repository.go:169:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceWriteRepositories, rbac.ActionGet, createRBACObject(repo.Project, repo.Repo)); err != nil {
+./server/repository/repository.go:224:		return s.enf.Enforce(ctx.Value("claims"), resourceType, rbac.ActionGet, createRBACObject(r.Project, r.Repo))
+./server/repository/repository.go:247:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceRepositories, rbac.ActionGet, createRBACObject(repo.Project, repo.Repo)); err != nil {
+./server/repository/repository.go:268:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceRepositories, rbac.ActionGet, createRBACObject(repo.Project, repo.Repo)); err != nil {
+./server/repository/repository.go:292:	if err := s.enf.EnforceErr(claims, rbac.ResourceRepositories, rbac.ActionGet, createRBACObject(repo.Project, repo.Repo)); err != nil {
+./server/repository/repository.go:300:	if !s.enf.Enforce(claims, rbac.ResourceApplications, rbac.ActionCreate, appRBACresource) &&
+./server/repository/repository.go:301:		!s.enf.Enforce(claims, rbac.ResourceApplications, rbac.ActionUpdate, appRBACresource) {
+./server/repository/repository.go:342:	if err := s.enf.EnforceErr(claims, rbac.ResourceRepositories, rbac.ActionGet, createRBACObject(repo.Project, repo.Repo)); err != nil {
+./server/repository/repository.go:349:	if err := s.enf.EnforceErr(claims, rbac.ResourceApplications, rbac.ActionGet, appRBACObj); err != nil {
+./server/repository/repository.go:355:		if err := s.enf.EnforceErr(claims, rbac.ResourceApplications, rbac.ActionCreate, appRBACObj); err != nil {
+./server/repository/repository.go:417:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceRepositories, rbac.ActionGet, createRBACObject(repo.Project, repo.Repo)); err != nil {
+./server/repository/repository.go:441:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceRepositories, rbac.ActionCreate, createRBACObject(q.Repo.Project, q.Repo.Repo)); err != nil {
+./server/repository/repository.go:504:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceWriteRepositories, rbac.ActionCreate, createRBACObject(q.Repo.Project, q.Repo.Repo)); err != nil {
+./server/repository/repository.go:558:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceRepositories, rbac.ActionUpdate, createRBACObject(repo.Project, repo.Repo)); err != nil {
+./server/repository/repository.go:562:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceRepositories, rbac.ActionUpdate, createRBACObject(q.Repo.Project, q.Repo.Repo)); err != nil {
+./server/repository/repository.go:585:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceWriteRepositories, rbac.ActionUpdate, createRBACObject(repo.Project, repo.Repo)); err != nil {
+./server/repository/repository.go:589:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceWriteRepositories, rbac.ActionUpdate, createRBACObject(q.Repo.Project, q.Repo.Repo)); err != nil {
+./server/repository/repository.go:610:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceRepositories, rbac.ActionDelete, createRBACObject(repo.Project, repo.Repo)); err != nil {
+./server/repository/repository.go:634:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceWriteRepositories, rbac.ActionDelete, createRBACObject(repo.Project, repo.Repo)); err != nil {
+./server/repository/repository.go:684:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceRepositories, rbac.ActionCreate, createRBACObject(q.Project, q.Repo)); err != nil {
+./server/repository/repository.go:735:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceWriteRepositories, rbac.ActionCreate, createRBACObject(q.Project, q.Repo)); err != nil {
+./server/cluster/cluster.go:74:		if s.enf.Enforce(ctx.Value("claims"), rbac.ResourceClusters, rbac.ActionGet, CreateClusterRBACObject(clust.Project, clust.Server)) {
+./server/cluster/cluster.go:145:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceClusters, rbac.ActionCreate, CreateClusterRBACObject(q.Cluster.Project, q.Cluster.Server)); err != nil {
+./server/cluster/cluster.go:218:	if !s.enf.Enforce(ctx.Value("claims"), rbac.ResourceClusters, action, CreateClusterRBACObject(c.Project, c.Server)) {
+./server/cluster/cluster.go:309:		if !s.enf.Enforce(ctx.Value("claims"), rbac.ResourceClusters, rbac.ActionUpdate, CreateClusterRBACObject(q.Cluster.Project, c.Server)) {
+./server/cluster/cluster.go:378:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceClusters, rbac.ActionDelete, CreateClusterRBACObject(project, server)); err != nil {
+./server/cluster/cluster.go:400:			if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceClusters, rbac.ActionUpdate, CreateClusterRBACObject(clust.Project, server)); err != nil {
+./server/cluster/cluster.go:406:		if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceClusters, rbac.ActionUpdate, CreateClusterRBACObject(clust.Project, q.Server)); err != nil {
+./server/repocreds/repocreds.go:43:		if s.enf.Enforce(ctx.Value("claims"), rbac.ResourceRepositories, rbac.ActionGet, url) {
+./server/repocreds/repocreds.go:67:		if s.enf.Enforce(ctx.Value("claims"), rbac.ResourceWriteRepositories, rbac.ActionGet, url) {
+./server/repocreds/repocreds.go:88:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceRepositories, rbac.ActionCreate, q.Creds.URL); err != nil {
+./server/repocreds/repocreds.go:123:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceWriteRepositories, rbac.ActionCreate, q.Creds.URL); err != nil {
+./server/repocreds/repocreds.go:158:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceRepositories, rbac.ActionUpdate, q.Creds.URL); err != nil {
+./server/repocreds/repocreds.go:170:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceWriteRepositories, rbac.ActionUpdate, q.Creds.URL); err != nil {
+./server/repocreds/repocreds.go:179:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceRepositories, rbac.ActionDelete, q.Url); err != nil {
+./server/repocreds/repocreds.go:189:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceWriteRepositories, rbac.ActionDelete, q.Url); err != nil {
+./server/server.go:337:	enf.EnableEnforce(!opts.DisableAuth)
+./server/server.go:914:		grpc.KeepaliveEnforcementPolicy(
+./server/server.go:915:			keepalive.EnforcementPolicy{
+./server/server.go:916:				MinTime: common.GetGRPCKeepAliveEnforcementMinimum(),
+./server/project/project.go:110:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceProjects, rbac.ActionUpdate, q.Project); err != nil {
+./server/project/project.go:167:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceProjects, rbac.ActionGet, projName); err != nil {
+./server/project/project.go:229:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceProjects, rbac.ActionUpdate, q.Project); err != nil {
+./server/project/project.go:254:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceProjects, rbac.ActionCreate, q.Project.Name); err != nil {
+./server/project/project.go:274:		if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceProjects, rbac.ActionUpdate, q.GetProject().Name); err != nil {
+./server/project/project.go:293:			if s.enf.Enforce(ctx.Value("claims"), rbac.ResourceProjects, rbac.ActionGet, project.Name) {
+./server/project/project.go:304:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceProjects, rbac.ActionGet, q.Name); err != nil {
+./server/project/project.go:332:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceProjects, rbac.ActionGet, q.Name); err != nil {
+./server/project/project.go:362:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceProjects, rbac.ActionUpdate, q.Project.Name); err != nil {
+./server/project/project.go:380:		if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceClusters, rbac.ActionUpdate, cluster); err != nil {
+./server/project/project.go:386:		if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceRepositories, rbac.ActionUpdate, repoURL); err != nil {
+./server/project/project.go:397:			if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceClusters, rbac.ActionUpdate, cluster); err != nil {
+./server/project/project.go:467:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceProjects, rbac.ActionDelete, q.Name); err != nil {
+./server/project/project.go:495:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceProjects, rbac.ActionGet, q.Name); err != nil {
+./server/project/project.go:521:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceProjects, rbac.ActionGet, q.Name); err != nil {
+./server/extension/extension.go:347:	EnforceErr(rvals ...any) error
+./server/extension/extension.go:685:	if err := m.rbac.EnforceErr(ctx.Value("claims"), rbac.ResourceApplications, rbac.ActionGet, appRBACName); err != nil {
+./server/extension/extension.go:689:	if err := m.rbac.EnforceErr(ctx.Value("claims"), rbac.ResourceExtensions, rbac.ActionInvoke, extName); err != nil {
+./server/applicationset/applicationset.go:160:	if !s.enf.Enforce(claims, rbac.ResourceApplicationSets, rbac.ActionGet, appset.RBACName(s.ns)) {
+./server/applicationset/applicationset.go:233:	return s.getAppSetEnforceRBAC(ctx, rbac.ActionGet, namespace, q.Name)
+./server/applicationset/applicationset.go:262:		if s.enf.Enforce(ctx.Value("claims"), rbac.ResourceApplicationSets, rbac.ActionGet, a.RBACName(s.ns)) {
+./server/applicationset/applicationset.go:355:	err = s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplicationSets, rbac.ActionUpdate, appset.RBACName(s.ns))
+./server/applicationset/applicationset.go:384:		if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplicationSets, rbac.ActionCreate, newAppset.RBACName(s.ns)); err != nil {
+./server/applicationset/applicationset.go:388:		if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplicationSets, rbac.ActionUpdate, appset.RBACName(s.ns)); err != nil {
+./server/applicationset/applicationset.go:429:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplicationSets, rbac.ActionDelete, appset.RBACName(s.ns)); err != nil {
+./server/applicationset/applicationset.go:447:	appset, err := s.getAppSetEnforceRBAC(ctx, rbac.ActionGet, namespace, q.Name)
+./server/applicationset/applicationset.go:548:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplicationSets, rbac.ActionCreate, appset.RBACName(s.ns)); err != nil {
+./server/applicationset/applicationset.go:617:// getAppSetEnforceRBAC gets the ApplicationSet with the given name in the given namespace and
+./server/applicationset/applicationset.go:623:func (s *Server) getAppSetEnforceRBAC(ctx context.Context, action, namespace, name string) (*v1alpha1.ApplicationSet, error) {
+./server/applicationset/applicationset.go:633:	if err := s.enf.EnforceErr(ctx.Value("claims"), rbac.ResourceApplicationSets, action, appset.RBACName(s.ns)); err != nil {
+./server/applicationset/applicationset.go:644:	appset, err := s.getAppSetEnforceRBAC(ctx, rbac.ActionGet, namespace, q.Name)
+./server/rbacpolicy/rbacpolicy.go:161:	return p.enf.EnforceRuntimePolicy(proj.Name, proj.ProjectPoliciesString(), vals...)
+./pkg/apiclient/grpcproxy.go:125:		grpc.KeepaliveEnforcementPolicy(
+./pkg/apiclient/grpcproxy.go:126:			keepalive.EnforcementPolicy{
+./pkg/apiclient/grpcproxy.go:127:				MinTime: common.GetGRPCKeepAliveEnforcementMinimum(),
+./util/rbac/rbac.go:49:	Enforce(rvals ...any) (bool, error)
+./util/rbac/rbac.go:51:	EnableEnforce(bool)
+./util/rbac/rbac.go:324:// Enforce is a wrapper around casbin.Enforce to additionally enforce a default role and a custom
+./util/rbac/rbac.go:330:// EnforceErr is a convenience helper to wrap a failed enforcement with a detailed error about the request
+./util/rbac/rbac.go:332:	if !e.Enforce(rvals...) {
+./util/rbac/rbac.go:360:// EnforceRuntimePolicy enforces a policy defined at run-time which augments the built-in and
+./util/rbac/rbac.go:384:		if ok, err := enf.Enforce(append([]any{defaultRole}, rvals[1:]...)...); ok && err == nil {
+./util/rbac/rbac.go:405:	ok, err := enf.Enforce(rvals...)
+./util/security/path_traversal.go:11:func EnforceToCurrentRoot(currentRoot, requestedPath string) (string, error) {
+./util/settings/settings.go:122:	// ServerRBACLogEnforceEnable temporary var indicates whether rbac will be enforced on logs
+./util/settings/settings.go:123:	ServerRBACLogEnforceEnable bool `json:"serverRBACLogEnforceEnable"`
+./util/app/path/path.go:173:			} else if _, err := security.EnforceToCurrentRoot(item, f); err == nil {
+./util/session/sessionmanager.go:443:	// Enforce maximum length of username on local accounts
+./reposerver/server.go:85:		grpc.KeepaliveEnforcementPolicy(
+./reposerver/server.go:86:			keepalive.EnforcementPolicy{
+./reposerver/server.go:87:				MinTime: common.GetGRPCKeepAliveEnforcementMinimum(),
+./cmpserver/server.go:68:		grpc.KeepaliveEnforcementPolicy(
+./cmpserver/server.go:69:			keepalive.EnforcementPolicy{
+./cmpserver/server.go:70:				MinTime: common.GetGRPCKeepAliveEnforcementMinimum(),
+./common/common.go:336:	// EnvGRPCKeepAliveMin defines the GRPCKeepAliveEnforcementMinimum, used in the grpc.KeepaliveEnforcementPolicy. Expects a "Duration" format (e.g. 10s).
+./common/common.go:445:	defaultGRPCKeepAliveEnforcementMinimum = 10 * time.Second
+./common/common.go:448:func GetGRPCKeepAliveEnforcementMinimum() time.Duration {
+./common/common.go:452:			logrus.Warnf("invalid env var value for %s: cannot parse: %s. Default value %s will be used.", EnvGRPCKeepAliveMin, err, defaultGRPCKeepAliveEnforcementMinimum)
+./common/common.go:453:			return defaultGRPCKeepAliveEnforcementMinimum
+./common/common.go:457:	return defaultGRPCKeepAliveEnforcementMinimum
+./common/common.go:462:	return 2 * GetGRPCKeepAliveEnforcementMinimum()
+./controller/appcontroller.go:462:		// Enforce application's permission for the source namespace

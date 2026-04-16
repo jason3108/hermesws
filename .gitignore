@@ -1,0 +1,14 @@
+# Argo CD source code (large upstream repo)
+argocd-src/
+
+# Editor and OS files
+.DS_Store
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Temporary files
+*.tmp
+*.log

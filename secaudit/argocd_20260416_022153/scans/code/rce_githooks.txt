@@ -1,0 +1,38 @@
+./cmd/argocd-applicationset-controller/commands/applicationset_controller.go:23:	"github.com/argoproj/argo-cd/v3/applicationset/webhook"
+./cmd/argocd/commands/app.go:24:	"github.com/argoproj/argo-cd/gitops-engine/pkg/sync/hook"
+./gitops-engine/pkg/health/health.go:9:	"github.com/argoproj/argo-cd/gitops-engine/pkg/sync/hook"
+./gitops-engine/pkg/sync/syncwaves/waves.go:9:	helmhook "github.com/argoproj/argo-cd/gitops-engine/pkg/sync/hook/helm"
+./gitops-engine/pkg/sync/hook/hook.go:7:	helmhook "github.com/argoproj/argo-cd/gitops-engine/pkg/sync/hook/helm"
+./gitops-engine/pkg/sync/hook/delete_policy.go:7:	helmhook "github.com/argoproj/argo-cd/gitops-engine/pkg/sync/hook/helm"
+./gitops-engine/pkg/sync/ignore/ignore.go:6:	"github.com/argoproj/argo-cd/gitops-engine/pkg/sync/hook"
+./gitops-engine/pkg/sync/sync_phase.go:7:	"github.com/argoproj/argo-cd/gitops-engine/pkg/sync/hook"
+./gitops-engine/pkg/sync/sync_context.go:35:	"github.com/argoproj/argo-cd/gitops-engine/pkg/sync/hook"
+./gitops-engine/pkg/sync/reconcile.go:7:	hookutil "github.com/argoproj/argo-cd/gitops-engine/pkg/sync/hook"
+./gitops-engine/pkg/sync/sync_task.go:10:	"github.com/argoproj/argo-cd/gitops-engine/pkg/sync/hook"
+./server/server.go:135:	"github.com/argoproj/argo-cd/v3/util/webhook"
+./util/webhook/webhook.go:22:	"github.com/go-playground/webhooks/v6/azuredevops"
+./util/webhook/webhook.go:23:	"github.com/go-playground/webhooks/v6/bitbucket"
+./util/webhook/webhook.go:24:	bitbucketserver "github.com/go-playground/webhooks/v6/bitbucket-server"
+./util/webhook/webhook.go:25:	"github.com/go-playground/webhooks/v6/github"
+./util/webhook/webhook.go:26:	"github.com/go-playground/webhooks/v6/gitlab"
+./util/webhook/webhook.go:27:	"github.com/go-playground/webhooks/v6/gogs"
+./util/webhook/webhook.go:90:	github                 *github.Webhook
+./util/webhook/webhook.go:91:	gitlab                 *gitlab.Webhook
+./util/webhook/webhook.go:103:	githubWebhook, err := github.New(github.Options.Secret(set.GetWebhookGitHubSecret()))
+./util/webhook/webhook.go:107:	gitlabWebhook, err := gitlab.New(gitlab.Options.Secret(set.GetWebhookGitLabSecret()))
+./util/webhook/webhook.go:132:		github:                 githubWebhook,
+./util/webhook/webhook.go:133:		gitlab:                 gitlabWebhook,
+./util/webhook/webhook.go:200:		// See: https://docs.gitlab.com/ee/user/project/integrations/webhooks.html
+./util/webhook/webhook.go:212:		// See: https://docs.gitlab.com/ee/user/project/integrations/webhooks.html
+./applicationset/webhook/webhook.go:23:	"github.com/argoproj/argo-cd/v3/util/webhook"
+./applicationset/webhook/webhook.go:25:	"github.com/go-playground/webhooks/v6/azuredevops"
+./applicationset/webhook/webhook.go:26:	"github.com/go-playground/webhooks/v6/github"
+./applicationset/webhook/webhook.go:27:	"github.com/go-playground/webhooks/v6/gitlab"
+./applicationset/webhook/webhook.go:39:	github         *github.Webhook
+./applicationset/webhook/webhook.go:40:	gitlab         *gitlab.Webhook
+./applicationset/webhook/webhook.go:81:	githubHandler, err := github.New(github.Options.Secret(argocdSettings.GetWebhookGitHubSecret()))
+./applicationset/webhook/webhook.go:85:	gitlabHandler, err := gitlab.New(gitlab.Options.Secret(argocdSettings.GetWebhookGitLabSecret()))
+./applicationset/webhook/webhook.go:300:// https://docs.gitlab.com/ee/user/project/integrations/webhook_events.html#merge-request-events
+./controller/hook.go:11:	"github.com/argoproj/argo-cd/gitops-engine/pkg/sync/hook"
+./controller/state.go:20:	hookutil "github.com/argoproj/argo-cd/gitops-engine/pkg/sync/hook"
+./controller/health.go:7:	hookutil "github.com/argoproj/argo-cd/gitops-engine/pkg/sync/hook"

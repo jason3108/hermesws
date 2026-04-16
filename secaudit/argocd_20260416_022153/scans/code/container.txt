@@ -1,0 +1,254 @@
+./cmd/argocd/commands/account.go:259:		fmt.Fprintf(w, "%s\t%v\t%s\n", a.Name, a.Enabled, strings.Join(a.Capabilities, ", "))
+./cmd/argocd/commands/account.go:353:	fmt.Printf(printOpFmtStr, "Capabilities:", strings.Join(acc.Capabilities, ", "))
+./hack/gen-resources/util/sizedwaitgroup.go:43:// the amount of goroutines started concurrently.
+./hack/gen-resources/util/sizedwaitgroup.go:52:// The limit parameter is the maximum amount of
+./gitops-engine/pkg/utils/kube/scheme/parser.go:4813:- name: io.k8s.api.core.v1.Capabilities
+./gitops-engine/pkg/utils/kube/scheme/parser.go:5148:    - name: securityContext
+./gitops-engine/pkg/utils/kube/scheme/parser.go:5169:    - name: volumeDevices
+./gitops-engine/pkg/utils/kube/scheme/parser.go:5173:            namedType: io.k8s.api.core.v1.VolumeDevice
+./gitops-engine/pkg/utils/kube/scheme/parser.go:5184:          - mountPath
+./gitops-engine/pkg/utils/kube/scheme/parser.go:5349:          - mountPath
+./gitops-engine/pkg/utils/kube/scheme/parser.go:5593:    - name: securityContext
+./gitops-engine/pkg/utils/kube/scheme/parser.go:5617:    - name: volumeDevices
+./gitops-engine/pkg/utils/kube/scheme/parser.go:5621:            namedType: io.k8s.api.core.v1.VolumeDevice
+./gitops-engine/pkg/utils/kube/scheme/parser.go:5632:          - mountPath
+./gitops-engine/pkg/utils/kube/scheme/parser.go:6853:    - name: mountOptions
+./gitops-engine/pkg/utils/kube/scheme/parser.go:7139:    - name: seccompProfile
+./gitops-engine/pkg/utils/kube/scheme/parser.go:7169:    - name: automountServiceAccountToken
+./gitops-engine/pkg/utils/kube/scheme/parser.go:7296:    - name: securityContext
+./gitops-engine/pkg/utils/kube/scheme/parser.go:8072:        namedType: io.k8s.api.core.v1.Capabilities
+./gitops-engine/pkg/utils/kube/scheme/parser.go:8073:    - name: privileged
+./gitops-engine/pkg/utils/kube/scheme/parser.go:8094:    - name: seccompProfile
+./gitops-engine/pkg/utils/kube/scheme/parser.go:8127:    - name: automountServiceAccountToken
+./gitops-engine/pkg/utils/kube/scheme/parser.go:8575:- name: io.k8s.api.core.v1.VolumeDevice
+./gitops-engine/pkg/utils/kube/scheme/parser.go:8589:    - name: mountPath
+./gitops-engine/pkg/utils/kube/scheme/parser.go:8593:    - name: mountPropagation
+./gitops-engine/pkg/utils/kube/scheme/parser.go:8615:    - name: mountPath
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12579:- name: io.k8s.api.resource.v1alpha3.AllocatedDeviceStatus
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12603:        namedType: io.k8s.api.resource.v1alpha3.NetworkDeviceData
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12613:        namedType: io.k8s.api.resource.v1alpha3.DeviceAllocationResult
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12618:- name: io.k8s.api.resource.v1alpha3.BasicDevice
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12628:            namedType: io.k8s.api.resource.v1alpha3.DeviceAttribute
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12638:            namedType: io.k8s.api.resource.v1alpha3.DeviceCounterConsumption
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12650:            namedType: io.k8s.api.resource.v1alpha3.DeviceTaint
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12652:- name: io.k8s.api.resource.v1alpha3.CELDeviceSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12677:- name: io.k8s.api.resource.v1alpha3.Device
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12682:        namedType: io.k8s.api.resource.v1alpha3.BasicDevice
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12687:- name: io.k8s.api.resource.v1alpha3.DeviceAllocationConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12692:        namedType: io.k8s.api.resource.v1alpha3.OpaqueDeviceConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12703:- name: io.k8s.api.resource.v1alpha3.DeviceAllocationResult
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12710:            namedType: io.k8s.api.resource.v1alpha3.DeviceAllocationConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12716:            namedType: io.k8s.api.resource.v1alpha3.DeviceRequestAllocationResult
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12718:- name: io.k8s.api.resource.v1alpha3.DeviceAttribute
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12733:- name: io.k8s.api.resource.v1alpha3.DeviceClaim
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12740:            namedType: io.k8s.api.resource.v1alpha3.DeviceClaimConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12746:            namedType: io.k8s.api.resource.v1alpha3.DeviceConstraint
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12752:            namedType: io.k8s.api.resource.v1alpha3.DeviceRequest
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12754:- name: io.k8s.api.resource.v1alpha3.DeviceClaimConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12759:        namedType: io.k8s.api.resource.v1alpha3.OpaqueDeviceConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12766:- name: io.k8s.api.resource.v1alpha3.DeviceClass
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12781:        namedType: io.k8s.api.resource.v1alpha3.DeviceClassSpec
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12783:- name: io.k8s.api.resource.v1alpha3.DeviceClassConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12788:        namedType: io.k8s.api.resource.v1alpha3.OpaqueDeviceConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12789:- name: io.k8s.api.resource.v1alpha3.DeviceClassSpec
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12796:            namedType: io.k8s.api.resource.v1alpha3.DeviceClassConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12802:            namedType: io.k8s.api.resource.v1alpha3.DeviceSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12804:- name: io.k8s.api.resource.v1alpha3.DeviceConstraint
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12816:- name: io.k8s.api.resource.v1alpha3.DeviceCounterConsumption
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12828:- name: io.k8s.api.resource.v1alpha3.DeviceRequest
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12848:            namedType: io.k8s.api.resource.v1alpha3.DeviceSubRequest
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12858:            namedType: io.k8s.api.resource.v1alpha3.DeviceSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12864:            namedType: io.k8s.api.resource.v1alpha3.DeviceToleration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12866:- name: io.k8s.api.resource.v1alpha3.DeviceRequestAllocationResult
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12892:            namedType: io.k8s.api.resource.v1alpha3.DeviceToleration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12894:- name: io.k8s.api.resource.v1alpha3.DeviceSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12899:        namedType: io.k8s.api.resource.v1alpha3.CELDeviceSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12900:- name: io.k8s.api.resource.v1alpha3.DeviceSubRequest
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12921:            namedType: io.k8s.api.resource.v1alpha3.DeviceSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12927:            namedType: io.k8s.api.resource.v1alpha3.DeviceToleration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12929:- name: io.k8s.api.resource.v1alpha3.DeviceTaint
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12946:- name: io.k8s.api.resource.v1alpha3.DeviceTaintRule
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12961:        namedType: io.k8s.api.resource.v1alpha3.DeviceTaintRuleSpec
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12963:- name: io.k8s.api.resource.v1alpha3.DeviceTaintRuleSpec
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12968:        namedType: io.k8s.api.resource.v1alpha3.DeviceTaintSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12971:        namedType: io.k8s.api.resource.v1alpha3.DeviceTaint
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12973:- name: io.k8s.api.resource.v1alpha3.DeviceTaintSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12992:            namedType: io.k8s.api.resource.v1alpha3.DeviceSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:12994:- name: io.k8s.api.resource.v1alpha3.DeviceToleration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13013:- name: io.k8s.api.resource.v1alpha3.NetworkDeviceData
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13028:- name: io.k8s.api.resource.v1alpha3.OpaqueDeviceConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13082:        namedType: io.k8s.api.resource.v1alpha3.DeviceClaim
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13094:            namedType: io.k8s.api.resource.v1alpha3.AllocatedDeviceStatus
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13178:            namedType: io.k8s.api.resource.v1alpha3.Device
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13190:    - name: perDeviceNodeSelection
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13203:- name: io.k8s.api.resource.v1beta1.AllocatedDeviceStatus
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13227:        namedType: io.k8s.api.resource.v1beta1.NetworkDeviceData
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13237:        namedType: io.k8s.api.resource.v1beta1.DeviceAllocationResult
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13242:- name: io.k8s.api.resource.v1beta1.BasicDevice
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13252:            namedType: io.k8s.api.resource.v1beta1.DeviceAttribute
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13257:            namedType: io.k8s.api.resource.v1beta1.DeviceCapacity
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13262:            namedType: io.k8s.api.resource.v1beta1.DeviceCounterConsumption
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13274:            namedType: io.k8s.api.resource.v1beta1.DeviceTaint
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13276:- name: io.k8s.api.resource.v1beta1.CELDeviceSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13301:- name: io.k8s.api.resource.v1beta1.Device
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13306:        namedType: io.k8s.api.resource.v1beta1.BasicDevice
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13311:- name: io.k8s.api.resource.v1beta1.DeviceAllocationConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13316:        namedType: io.k8s.api.resource.v1beta1.OpaqueDeviceConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13327:- name: io.k8s.api.resource.v1beta1.DeviceAllocationResult
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13334:            namedType: io.k8s.api.resource.v1beta1.DeviceAllocationConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13340:            namedType: io.k8s.api.resource.v1beta1.DeviceRequestAllocationResult
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13342:- name: io.k8s.api.resource.v1beta1.DeviceAttribute
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13357:- name: io.k8s.api.resource.v1beta1.DeviceCapacity
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13363:- name: io.k8s.api.resource.v1beta1.DeviceClaim
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13370:            namedType: io.k8s.api.resource.v1beta1.DeviceClaimConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13376:            namedType: io.k8s.api.resource.v1beta1.DeviceConstraint
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13382:            namedType: io.k8s.api.resource.v1beta1.DeviceRequest
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13384:- name: io.k8s.api.resource.v1beta1.DeviceClaimConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13389:        namedType: io.k8s.api.resource.v1beta1.OpaqueDeviceConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13396:- name: io.k8s.api.resource.v1beta1.DeviceClass
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13411:        namedType: io.k8s.api.resource.v1beta1.DeviceClassSpec
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13413:- name: io.k8s.api.resource.v1beta1.DeviceClassConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13418:        namedType: io.k8s.api.resource.v1beta1.OpaqueDeviceConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13419:- name: io.k8s.api.resource.v1beta1.DeviceClassSpec
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13426:            namedType: io.k8s.api.resource.v1beta1.DeviceClassConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13432:            namedType: io.k8s.api.resource.v1beta1.DeviceSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13434:- name: io.k8s.api.resource.v1beta1.DeviceConstraint
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13446:- name: io.k8s.api.resource.v1beta1.DeviceCounterConsumption
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13458:- name: io.k8s.api.resource.v1beta1.DeviceRequest
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13478:            namedType: io.k8s.api.resource.v1beta1.DeviceSubRequest
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13488:            namedType: io.k8s.api.resource.v1beta1.DeviceSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13494:            namedType: io.k8s.api.resource.v1beta1.DeviceToleration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13496:- name: io.k8s.api.resource.v1beta1.DeviceRequestAllocationResult
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13522:            namedType: io.k8s.api.resource.v1beta1.DeviceToleration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13524:- name: io.k8s.api.resource.v1beta1.DeviceSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13529:        namedType: io.k8s.api.resource.v1beta1.CELDeviceSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13530:- name: io.k8s.api.resource.v1beta1.DeviceSubRequest
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13551:            namedType: io.k8s.api.resource.v1beta1.DeviceSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13557:            namedType: io.k8s.api.resource.v1beta1.DeviceToleration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13559:- name: io.k8s.api.resource.v1beta1.DeviceTaint
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13576:- name: io.k8s.api.resource.v1beta1.DeviceToleration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13595:- name: io.k8s.api.resource.v1beta1.NetworkDeviceData
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13610:- name: io.k8s.api.resource.v1beta1.OpaqueDeviceConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13664:        namedType: io.k8s.api.resource.v1beta1.DeviceClaim
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13676:            namedType: io.k8s.api.resource.v1beta1.AllocatedDeviceStatus
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13760:            namedType: io.k8s.api.resource.v1beta1.Device
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13772:    - name: perDeviceNodeSelection
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13785:- name: io.k8s.api.resource.v1beta2.AllocatedDeviceStatus
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13809:        namedType: io.k8s.api.resource.v1beta2.NetworkDeviceData
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13819:        namedType: io.k8s.api.resource.v1beta2.DeviceAllocationResult
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13824:- name: io.k8s.api.resource.v1beta2.CELDeviceSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13849:- name: io.k8s.api.resource.v1beta2.Device
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13859:            namedType: io.k8s.api.resource.v1beta2.DeviceAttribute
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13864:            namedType: io.k8s.api.resource.v1beta2.DeviceCapacity
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13869:            namedType: io.k8s.api.resource.v1beta2.DeviceCounterConsumption
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13885:            namedType: io.k8s.api.resource.v1beta2.DeviceTaint
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13887:- name: io.k8s.api.resource.v1beta2.DeviceAllocationConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13892:        namedType: io.k8s.api.resource.v1beta2.OpaqueDeviceConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13903:- name: io.k8s.api.resource.v1beta2.DeviceAllocationResult
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13910:            namedType: io.k8s.api.resource.v1beta2.DeviceAllocationConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13916:            namedType: io.k8s.api.resource.v1beta2.DeviceRequestAllocationResult
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13918:- name: io.k8s.api.resource.v1beta2.DeviceAttribute
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13933:- name: io.k8s.api.resource.v1beta2.DeviceCapacity
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13939:- name: io.k8s.api.resource.v1beta2.DeviceClaim
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13946:            namedType: io.k8s.api.resource.v1beta2.DeviceClaimConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13952:            namedType: io.k8s.api.resource.v1beta2.DeviceConstraint
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13958:            namedType: io.k8s.api.resource.v1beta2.DeviceRequest
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13960:- name: io.k8s.api.resource.v1beta2.DeviceClaimConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13965:        namedType: io.k8s.api.resource.v1beta2.OpaqueDeviceConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13972:- name: io.k8s.api.resource.v1beta2.DeviceClass
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13987:        namedType: io.k8s.api.resource.v1beta2.DeviceClassSpec
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13989:- name: io.k8s.api.resource.v1beta2.DeviceClassConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13994:        namedType: io.k8s.api.resource.v1beta2.OpaqueDeviceConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:13995:- name: io.k8s.api.resource.v1beta2.DeviceClassSpec
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14002:            namedType: io.k8s.api.resource.v1beta2.DeviceClassConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14008:            namedType: io.k8s.api.resource.v1beta2.DeviceSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14010:- name: io.k8s.api.resource.v1beta2.DeviceConstraint
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14022:- name: io.k8s.api.resource.v1beta2.DeviceCounterConsumption
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14034:- name: io.k8s.api.resource.v1beta2.DeviceRequest
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14039:        namedType: io.k8s.api.resource.v1beta2.ExactDeviceRequest
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14044:            namedType: io.k8s.api.resource.v1beta2.DeviceSubRequest
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14050:- name: io.k8s.api.resource.v1beta2.DeviceRequestAllocationResult
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14076:            namedType: io.k8s.api.resource.v1beta2.DeviceToleration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14078:- name: io.k8s.api.resource.v1beta2.DeviceSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14083:        namedType: io.k8s.api.resource.v1beta2.CELDeviceSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14084:- name: io.k8s.api.resource.v1beta2.DeviceSubRequest
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14105:            namedType: io.k8s.api.resource.v1beta2.DeviceSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14111:            namedType: io.k8s.api.resource.v1beta2.DeviceToleration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14113:- name: io.k8s.api.resource.v1beta2.DeviceTaint
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14130:- name: io.k8s.api.resource.v1beta2.DeviceToleration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14149:- name: io.k8s.api.resource.v1beta2.ExactDeviceRequest
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14169:            namedType: io.k8s.api.resource.v1beta2.DeviceSelector
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14175:            namedType: io.k8s.api.resource.v1beta2.DeviceToleration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14177:- name: io.k8s.api.resource.v1beta2.NetworkDeviceData
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14192:- name: io.k8s.api.resource.v1beta2.OpaqueDeviceConfiguration
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14246:        namedType: io.k8s.api.resource.v1beta2.DeviceClaim
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14258:            namedType: io.k8s.api.resource.v1beta2.AllocatedDeviceStatus
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14342:            namedType: io.k8s.api.resource.v1beta2.Device
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14354:    - name: perDeviceNodeSelection
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14594:    - name: mountOptions
+./gitops-engine/pkg/utils/kube/scheme/parser.go:14978:    - name: mountOptions
+./server/account/account.go:138:	for _, c := range a.Capabilities {
+./server/account/account.go:151:		Capabilities: capabilities,
+./server/extension/extension.go:214:	// ConnectionTimeout is the maximum amount of time a dial to
+./server/extension/extension.go:225:	// IdleConnectionTimeout is the maximum amount of time an idle
+./server/rbacpolicy/rbacpolicy.go:96:	// Get groups to reduce the amount to checking groups
+./pkg/apiclient/account/account.pb.go:292:	Capabilities         []string `protobuf:"bytes,3,rep,name=capabilities,proto3" json:"capabilities,omitempty"`
+./pkg/apiclient/account/account.pb.go:346:func (m *Account) GetCapabilities() []string {
+./pkg/apiclient/account/account.pb.go:348:		return m.Capabilities
+./pkg/apiclient/account/account.pb.go:1332:	if len(m.Capabilities) > 0 {
+./pkg/apiclient/account/account.pb.go:1333:		for iNdEx := len(m.Capabilities) - 1; iNdEx >= 0; iNdEx-- {
+./pkg/apiclient/account/account.pb.go:1334:			i -= len(m.Capabilities[iNdEx])
+./pkg/apiclient/account/account.pb.go:1335:			copy(dAtA[i:], m.Capabilities[iNdEx])
+./pkg/apiclient/account/account.pb.go:1336:			i = encodeVarintAccount(dAtA, i, uint64(len(m.Capabilities[iNdEx])))
+./pkg/apiclient/account/account.pb.go:1778:	if len(m.Capabilities) > 0 {
+./pkg/apiclient/account/account.pb.go:1779:		for _, s := range m.Capabilities {
+./pkg/apiclient/account/account.pb.go:2537:				return fmt.Errorf("proto: wrong wireType = %d for field Capabilities", wireType)
+./pkg/apiclient/account/account.pb.go:2565:			m.Capabilities = append(m.Capabilities, string(dAtA[iNdEx:postIndex]))
+./pkg/apis/application/v1alpha1/openapi_generated.go:2619:							Description: "Duration is the amount to back off. Default unit is seconds, but could also be a duration (e.g. \"2m\", \"1h\")",
+./pkg/apis/application/v1alpha1/openapi_generated.go:2633:							Description: "MaxDuration is the maximum amount of time allowed for the backoff strategy",
+./pkg/apis/application/v1alpha1/openapi_generated.go:8389:							Description: "Duration is the amount of time the sync window will be open",
+./pkg/apis/application/v1alpha1/types.go:1567:	// Duration is the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
+./pkg/apis/application/v1alpha1/types.go:1571:	// MaxDuration is the maximum amount of time allowed for the backoff strategy
+./pkg/apis/application/v1alpha1/types.go:1969:	// RequestedByApp indicates the total amount of this resource requested by the application running on the host.
+./pkg/apis/application/v1alpha1/types.go:1971:	// RequestedByNeighbors indicates the total amount of this resource requested by other workloads on the same host.
+./pkg/apis/application/v1alpha1/types.go:2824:	// Duration is the amount of time the sync window will be open
+./util/settings/accounts.go:57:	Capabilities  []AccountCapability
+./util/settings/accounts.go:69:// FormatCapabilities returns comma separate list of user capabilities.
+./util/settings/accounts.go:70:func (a *Account) FormatCapabilities() string {
+./util/settings/accounts.go:72:	for i := range a.Capabilities {
+./util/settings/accounts.go:73:		items = append(items, string(a.Capabilities[i]))
+./util/settings/accounts.go:90:	return slices.Contains(a.Capabilities, capability)
+./util/settings/accounts.go:192:		updateAccountMap(cm, fmt.Sprintf("%s.%s", accountsKeyPrefix, name), account.FormatCapabilities(), "")
+./util/settings/accounts.go:198:	adminAccount := &Account{Enabled: true, Capabilities: []AccountCapability{AccountCapabilityLogin}}
+./util/settings/accounts.go:270:					account.Capabilities = append(account.Capabilities, AccountCapabilityLogin)
+./util/settings/accounts.go:272:					account.Capabilities = append(account.Capabilities, AccountCapabilityApiKey)
+./util/exec/exec.go:139:	// FatalTimeout is the amount of additional time to wait after Timeout before fatal SIGKILL
+./util/cert/cert.go:343:// mount. This function makes sure that the path returned actually contain
+./util/gpg/gpg.go:243:		// This usually happens with emptyDir mount on container crash - we need to
+./util/session/sessionmanager.go:454:			// take into account amount of time spent since the request start
+./util/argo/normalizers/corev1_known_types.go:40:	knownTypes["core/v1/Capabilities"] = func() any {
+./util/argo/normalizers/corev1_known_types.go:41:		return &corev1.Capabilities{}
+./util/argo/normalizers/corev1_known_types.go:691:	knownTypes["core/v1/VolumeDevice"] = func() any {
+./util/argo/normalizers/corev1_known_types.go:692:		return &corev1.VolumeDevice{}
+./util/oci/client.go:277:		// Add a guard to defend against a ridiculous amount of layers. No idea what a good amount is, but normally we
+./util/cache/appstate/cache.go:111:		// Splitting resource tree into shards reduces number of Redis SET calls and therefore amount of traffic sent
+./util/cache/cache.go:135:// loadRedisCreds loads Redis credentials either from file-based mounts or environment variables.
+./util/cache/cache.go:136:// If a mount path is provided, Redis credentials are expected to be read only from the mounted files.
+./util/cache/cache.go:137:// If no mount path is provided, the function falls back to reading credentials from environment variables
+./util/cache/cache.go:139:func loadRedisCreds(mountPath string, opt Options) (username, password, sentinelUsername, sentinelPassword string, err error) {
+./util/cache/cache.go:140:	if mountPath != "" {
+./util/cache/cache.go:141:		log.Infof("Loading Redis credentials from mounted directory: %s", mountPath)
+./util/cache/cache.go:142:		if _, statErr := os.Stat(mountPath); statErr != nil {
+./util/cache/cache.go:143:			return "", "", "", "", fmt.Errorf("failed to access Redis credentials: mount path %q does not exist or is inaccessible: %w", mountPath, statErr)
+./util/cache/cache.go:145:		password, err = readAuthDetailsFromFile(mountPath, "auth")
+./util/cache/cache.go:149:		username, err = readAuthDetailsFromFile(mountPath, "auth_username")
+./util/cache/cache.go:153:		sentinelUsername, err = readAuthDetailsFromFile(mountPath, "sentinel_username")
+./util/cache/cache.go:157:		sentinelPassword, err = readAuthDetailsFromFile(mountPath, "sentinel_auth")
+./util/cache/cache.go:189:// mount path. If the file does not exist, it returns an empty string and no error.
+./util/cache/cache.go:195:func readAuthDetailsFromFile(mountPath, filename string) (string, error) {
+./util/cache/cache.go:196:	path := filepath.Join(mountPath, filename)
+./reposerver/cache/cache.go:290:	// Wait only the maximum amount of time configured for the lock
+./cmpserver/plugin/plugin.go:33:// cmpTimeoutBuffer is the amount of time before the request deadline to timeout server-side work. It makes sure there's
+./common/common.go:57:	// ArgoCDKnownHostsConfigMapName contains SSH known hosts data for connecting repositories. Will get mounted as volume to pods
+./common/common.go:59:	// ArgoCDTLSCertsConfigMapName contains TLS certificate data for connecting repositories. Will get mounted as volume to pods
+./controller/appcontroller.go:2366:		// We don't want to resync with auto-sync indefinitely. We should have retried the configured amount of time already

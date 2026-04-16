@@ -1,0 +1,431 @@
+./cmd/argocd/commands/login.go:15:	jwtutil "github.com/argoproj/argo-cd/v3/util/jwt"
+./cmd/argocd/commands/login.go:18:	"github.com/golang-jwt/jwt/v5"
+./cmd/argocd/commands/login.go:144:				parser := jwt.NewParser(jwt.WithoutClaimsValidation())
+./cmd/argocd/commands/login.go:145:				claims := jwt.MapClaims{}
+./cmd/argocd/commands/login.go:146:				_, _, err := parser.ParseUnverified(tokenString, &claims)
+./cmd/argocd/commands/login.go:195:func userDisplayName(claims jwt.MapClaims) string {
+./cmd/argocd/commands/login.go:196:	if email := jwtutil.StringField(claims, "email"); email != "" {
+./cmd/argocd/commands/login.go:199:	if name := jwtutil.StringField(claims, "name"); name != "" {
+./cmd/argocd/commands/login.go:202:	return jwtutil.GetUserIdentifier(claims)
+./cmd/argocd/commands/login.go:206:// returns the JWT token and a refresh token (if supported)
+./cmd/argocd/commands/project_role.go:11:	jwtgo "github.com/golang-jwt/jwt/v5"
+./cmd/argocd/commands/project_role.go:21:	"github.com/argoproj/argo-cd/v3/util/jwt"
+./cmd/argocd/commands/project_role.go:66:JWT Tokens:
+./cmd/argocd/commands/project_role.go:80:JWT Tokens:
+./cmd/argocd/commands/project_role.go:95:JWT Tokens:
+./cmd/argocd/commands/project_role.go:142:JWT Tokens:
+./cmd/argocd/commands/project_role.go:156:JWT Tokens:
+./cmd/argocd/commands/project_role.go:170:JWT Tokens:
+./cmd/argocd/commands/project_role.go:356:			token, err := jwtgo.Parse(tokenResponse.Token, nil)
+./cmd/argocd/commands/project_role.go:363:			claims := token.Claims.(jwtgo.MapClaims)
+./cmd/argocd/commands/project_role.go:365:			issuedAt, _ := jwt.IssuedAt(claims)
+./cmd/argocd/commands/project_role.go:366:			expiresAt := int64(jwt.Float64Field(claims, "exp"))
+./cmd/argocd/commands/project_role.go:367:			id := jwt.StringField(claims, "jti")
+./cmd/argocd/commands/project_role.go:368:			subject := jwt.GetUserIdentifier(claims)
+./cmd/argocd/commands/project_role.go:418:			if len(role.JWTTokens) == 0 {
+./cmd/argocd/commands/project_role.go:428:			for _, token := range role.JWTTokens {
+./cmd/argocd/commands/project_role.go:471:JWT Tokens:
+./cmd/argocd/commands/project_role.go:580:JWT Tokens:
+./cmd/argocd/commands/project_role.go:618:			fmt.Printf("JWT Tokens:\n")
+./cmd/argocd/commands/project_role.go:621:			for _, token := range proj.Status.JWTTokensByRole[roleName].Items {
+./cmd/argocd/commands/account.go:14:	"github.com/golang-jwt/jwt/v5"
+./cmd/argocd/commands/account.go:20:	jwtutil "github.com/argoproj/argo-cd/v3/util/jwt"
+./cmd/argocd/commands/account.go:133:				// Get a new JWT token after updating the password
+./cmd/argocd/commands/account.go:140:				tokenString := passwordLogin(ctx, acdClient, localconfig.GetUsername(jwtutil.StringField(claims, "sub")), newPassword)
+./cmd/argocd/commands/account.go:505:			validator := jwt.NewValidator()
+./cmd/argocd/commands/account.go:512:				iss := jwtutil.StringField(claims, "iss")
+./cmd/argocd/commands/account.go:516:					"username":          localconfig.GetUsername(jwtutil.GetUserIdentifier(claims)),
+./cmd/argocd/commands/account.go:523:				if iat, err := jwtutil.IssuedAtTime(claims); err == nil {
+./cmd/argocd/commands/account.go:526:				if exp, err := jwtutil.ExpirationTime(claims); err == nil {
+./cmd/argocd/commands/relogin.go:16:	jwtutil "github.com/argoproj/argo-cd/v3/util/jwt"
+./cmd/argocd/commands/relogin.go:64:			if jwtutil.StringField(claims, "iss") == session.SessionManagerClaimsIssuer {
+./cmd/argocd/commands/relogin.go:66:				tokenString = passwordLogin(ctx, acdClient, localconfig.GetUsername(jwtutil.StringField(claims, "sub")), password)
+./server/logout/logout.go:10:	"github.com/golang-jwt/jwt/v5"
+./server/logout/logout.go:15:	jwtutil "github.com/argoproj/argo-cd/v3/util/jwt"
+./server/logout/logout.go:34:	verifyToken func(ctx context.Context, tokenString string) (jwt.Claims, string, error)
+./server/logout/logout.go:106:	mapClaims, err := jwtutil.MapClaims(claims)
+./server/logout/logout.go:112:	issuer := jwtutil.StringField(mapClaims, "iss")
+./server/logout/logout.go:113:	id := jwtutil.StringField(mapClaims, "jti")
+./server/logout/logout.go:116:		id = jwtutil.StringField(mapClaims, "at_hash")
+./server/logout/logout.go:119:	if exp, err := jwtutil.ExpirationTime(mapClaims); err == nil && id != "" {
+./server/application/application.go:2331:	// sanitize project jwt tokens
+./server/server.go:32:	"github.com/golang-jwt/jwt/v5"
+./server/server.go:124:	jwtutil "github.com/argoproj/argo-cd/v3/util/jwt"
+./server/server.go:1551:// getClaims extracts, validates and refreshes a JWT token from an incoming request context.
+./server/server.go:1552:func (server *ArgoCDServer) getClaims(ctx context.Context) (jwt.Claims, string, error) {
+./server/server.go:1589:			log.Infof("refreshed token for subject: %v", jwtutil.StringField(updatedClaims, "sub"))
+./server/server.go:1610:		if strings.HasPrefix(t, "Bearer ") && jwtutil.IsValid(token) {
+./server/server.go:1621:		if err == nil && jwtutil.IsValid(token) {
+./server/project/project.go:11:	"github.com/golang-jwt/jwt/v5"
+./server/project/project.go:33:	jwtutil "github.com/argoproj/argo-cd/v3/util/jwt"
+./server/project/project.go:40:	// JWTTokenSubFormat format of the JWT token subject that Argo CD vends out.
+./server/project/project.go:41:	JWTTokenSubFormat = "proj:%s:%s"
+./server/project/project.go:111:		if !jwtutil.IsMember(jwtutil.Claims(ctx.Value("claims")), role.Groups, s.policyEnf.GetScopes()) {
+./server/project/project.go:116:	if err := prj.ValidateJWTTokenID(q.Role, q.Id); err != nil {
+./server/project/project.go:123:	subject := fmt.Sprintf(JWTTokenSubFormat, q.Project, q.Role)
+./server/project/project.go:124:	jwtToken, err := s.sessionMgr.Create(subject, q.ExpiresIn, id)
+./server/project/project.go:128:	parser := jwt.NewParser(jwt.WithoutClaimsValidation())
+./server/project/project.go:129:	claims := jwt.RegisteredClaims{}
+./server/project/project.go:130:	_, _, err = parser.ParseUnverified(jwtToken, &claims)
+./server/project/project.go:143:	prj.NormalizeJWTTokens()
+./server/project/project.go:145:	items := append(prj.Status.JWTTokensByRole[q.Role].Items, v1alpha1.JWTToken{IssuedAt: issuedAt, ExpiresAt: expiresAt, ID: id})
+./server/project/project.go:146:	if _, found := prj.Status.JWTTokensByRole[q.Role]; found {
+./server/project/project.go:147:		prj.Status.JWTTokensByRole[q.Role] = v1alpha1.JWTTokens{Items: items}
+./server/project/project.go:149:		tokensMap := make(map[string]v1alpha1.JWTTokens)
+./server/project/project.go:150:		tokensMap[q.Role] = v1alpha1.JWTTokens{Items: items}
+./server/project/project.go:151:		prj.Status.JWTTokensByRole = tokensMap
+./server/project/project.go:154:	prj.NormalizeJWTTokens()
+./server/project/project.go:161:	return &project.ProjectTokenResponse{Token: jwtToken}, nil
+./server/project/project.go:179:	// sanitize project jwt tokens
+./server/project/project.go:230:		if !jwtutil.IsMember(jwtutil.Claims(ctx.Value("claims")), role.Groups, s.policyEnf.GetScopes()) {
+./server/project/project.go:235:	err = prj.RemoveJWTToken(roleIndex, q.Iat, q.Id)
+./server/project/project.go:311:	proj.NormalizeJWTTokens()
+./server/project/project.go:339:	proj.NormalizeJWTTokens()
+./server/project/project.go:366:	q.Project.NormalizeJWTTokens()
+./server/project/project.go:551:			if !proj.NormalizeJWTTokens() {
+./server/session/session.go:42:// Create generates a JWT token signed by Argo CD intended for web/CLI logins of the admin user
+./server/session/session.go:77:	jwtToken, err := s.mgr.Create(
+./server/session/session.go:86:	return &session.SessionResponse{Token: jwtToken}, nil
+./server/rbacpolicy/rbacpolicy.go:6:	"github.com/golang-jwt/jwt/v5"
+./server/rbacpolicy/rbacpolicy.go:11:	jwtutil "github.com/argoproj/argo-cd/v3/util/jwt"
+./server/rbacpolicy/rbacpolicy.go:16:// roles, jwt tokens, and groups. It is backed by a AppProject informer/lister cache and does not
+./server/rbacpolicy/rbacpolicy.go:59:func (p *RBACPolicyEnforcer) EnforceClaims(claims jwt.Claims, rvals ...any) bool {
+./server/rbacpolicy/rbacpolicy.go:60:	mapClaims, err := jwtutil.MapClaims(claims)
+./server/rbacpolicy/rbacpolicy.go:65:	subject := jwtutil.GetUserIdentifier(mapClaims)
+./server/rbacpolicy/rbacpolicy.go:94:	groups := jwtutil.GetScopeValues(mapClaims, scopes)
+./pkg/apiclient/apiclient.go:19:	"github.com/golang-jwt/jwt/v5"
+./pkg/apiclient/apiclient.go:393:// refreshAuthToken refreshes a JWT auth token if it is invalid (e.g. expired)
+./pkg/apiclient/apiclient.go:403:	parser := jwt.NewParser(jwt.WithoutClaimsValidation())
+./pkg/apiclient/apiclient.go:404:	var claims jwt.RegisteredClaims
+./pkg/apiclient/apiclient.go:405:	_, _, err = parser.ParseUnverified(configCtx.User.AuthToken, &claims)
+./pkg/apiclient/apiclient.go:409:	validator := jwt.NewValidator()
+./pkg/apiclient/apiclient.go:484:type jwtCredentials struct {
+./pkg/apiclient/apiclient.go:488:func (c jwtCredentials) RequireTransportSecurity() bool {
+./pkg/apiclient/apiclient.go:492:func (c jwtCredentials) GetRequestMetadata(context.Context, ...string) (map[string]string, error) {
+./pkg/apiclient/apiclient.go:521:	endpointCredentials := jwtCredentials{
+./pkg/apiclient/session/session.pb.go:352:	// Create a new JWT for authentication and set a cookie if using HTTP
+./pkg/apiclient/session/session.pb.go:354:	// Delete an existing JWT cookie if using HTTP
+./pkg/apiclient/session/session.pb.go:397:	// Create a new JWT for authentication and set a cookie if using HTTP
+./pkg/apiclient/session/session.pb.go:399:	// Delete an existing JWT cookie if using HTTP
+./pkg/apis/application/v1alpha1/app_project_types.go:41:// * automation access to these roles (JWT tokens)
+./pkg/apis/application/v1alpha1/app_project_types.go:55:	// JWTTokensByRole contains a list of JWT tokens issued for a given role
+./pkg/apis/application/v1alpha1/app_project_types.go:56:	JWTTokensByRole map[string]JWTTokens `json:"jwtTokensByRole,omitempty" protobuf:"bytes,1,opt,name=jwtTokensByRole"`
+./pkg/apis/application/v1alpha1/app_project_types.go:69:// GetJWTTokenFromSpec looks up the index of a JWTToken in a project by id (new token), if not then by the issue at time (old token)
+./pkg/apis/application/v1alpha1/app_project_types.go:70:func (proj *AppProject) GetJWTTokenFromSpec(roleName string, issuedAt int64, id string) (*JWTToken, int, error) {
+./pkg/apis/application/v1alpha1/app_project_types.go:71:	// This is for backward compatibility. In the oder version, JWTTokens are stored under spec.role
+./pkg/apis/application/v1alpha1/app_project_types.go:78:		for i, token := range role.JWTTokens {
+./pkg/apis/application/v1alpha1/app_project_types.go:86:		for i, token := range role.JWTTokens {
+./pkg/apis/application/v1alpha1/app_project_types.go:93:	return nil, -1, fmt.Errorf("JWT token for role '%s' issued at '%d' does not exist in project '%s'", role.Name, issuedAt, proj.Name)
+./pkg/apis/application/v1alpha1/app_project_types.go:96:// GetJWTToken looks up the index of a JWTToken in a project by id (new token), if not then by the issue at time (old token)
+./pkg/apis/application/v1alpha1/app_project_types.go:97:func (proj *AppProject) GetJWTToken(roleName string, issuedAt int64, id string) (*JWTToken, int, error) {
+./pkg/apis/application/v1alpha1/app_project_types.go:98:	// This is for newer version, JWTTokens are stored under status
+./pkg/apis/application/v1alpha1/app_project_types.go:100:		for i, token := range proj.Status.JWTTokensByRole[roleName].Items {
+./pkg/apis/application/v1alpha1/app_project_types.go:108:		for i, token := range proj.Status.JWTTokensByRole[roleName].Items {
+./pkg/apis/application/v1alpha1/app_project_types.go:115:	return nil, -1, fmt.Errorf("JWT token for role '%s' issued at '%d' does not exist in project '%s'", roleName, issuedAt, proj.Name)
+./pkg/apis/application/v1alpha1/app_project_types.go:118:// RemoveJWTToken removes the specified JWT from an AppProject
+./pkg/apis/application/v1alpha1/app_project_types.go:119:func (proj AppProject) RemoveJWTToken(roleIndex int, issuedAt int64, id string) error {
+./pkg/apis/application/v1alpha1/app_project_types.go:122:	_, jwtTokenIndex, err1 := proj.GetJWTTokenFromSpec(roleName, issuedAt, id)
+./pkg/apis/application/v1alpha1/app_project_types.go:124:		proj.Spec.Roles[roleIndex].JWTTokens[jwtTokenIndex] = proj.Spec.Roles[roleIndex].JWTTokens[len(proj.Spec.Roles[roleIndex].JWTTokens)-1]
+./pkg/apis/application/v1alpha1/app_project_types.go:125:		proj.Spec.Roles[roleIndex].JWTTokens = proj.Spec.Roles[roleIndex].JWTTokens[:len(proj.Spec.Roles[roleIndex].JWTTokens)-1]
+./pkg/apis/application/v1alpha1/app_project_types.go:128:	// New location for storing JWTToken
+./pkg/apis/application/v1alpha1/app_project_types.go:129:	_, jwtTokenIndex, err2 := proj.GetJWTToken(roleName, issuedAt, id)
+./pkg/apis/application/v1alpha1/app_project_types.go:131:		proj.Status.JWTTokensByRole[roleName].Items[jwtTokenIndex] = proj.Status.JWTTokensByRole[roleName].Items[len(proj.Status.JWTTokensByRole[roleName].Items)-1]
+./pkg/apis/application/v1alpha1/app_project_types.go:132:		proj.Status.JWTTokensByRole[roleName] = JWTTokens{Items: proj.Status.JWTTokensByRole[roleName].Items[:len(proj.Status.JWTTokensByRole[roleName].Items)-1]}
+./pkg/apis/application/v1alpha1/app_project_types.go:143:// ValidateJWTTokenID checks whether a given JWT token ID is already associated with the specified role.
+./pkg/apis/application/v1alpha1/app_project_types.go:149:func (proj *AppProject) ValidateJWTTokenID(roleName string, id string) error {
+./pkg/apis/application/v1alpha1/app_project_types.go:157:	for _, token := range role.JWTTokens {
+./pkg/apis/application/v1alpha1/app_project_types.go:534:// NormalizeJWTTokens normalizes JWT Tokens
+./pkg/apis/application/v1alpha1/app_project_types.go:535:func (proj *AppProject) NormalizeJWTTokens() bool {
+./pkg/apis/application/v1alpha1/app_project_types.go:538:		for j, token := range role.JWTTokens {
+./pkg/apis/application/v1alpha1/app_project_types.go:541:				role.JWTTokens[j] = token
+./pkg/apis/application/v1alpha1/app_project_types.go:547:	for _, roleTokenEntry := range proj.Status.JWTTokensByRole {
+./pkg/apis/application/v1alpha1/app_project_types.go:556:	needSync := syncJWTTokenBetweenStatusAndSpec(proj)
+./pkg/apis/application/v1alpha1/app_project_types.go:560:func syncJWTTokenBetweenStatusAndSpec(proj *AppProject) bool {
+./pkg/apis/application/v1alpha1/app_project_types.go:566:		tokensInSpec := role.JWTTokens
+./pkg/apis/application/v1alpha1/app_project_types.go:567:		tokensInStatus := []JWTToken{}
+./pkg/apis/application/v1alpha1/app_project_types.go:568:		if proj.Status.JWTTokensByRole == nil {
+./pkg/apis/application/v1alpha1/app_project_types.go:569:			tokensByRole := make(map[string]JWTTokens)
+./pkg/apis/application/v1alpha1/app_project_types.go:570:			proj.Status.JWTTokensByRole = tokensByRole
+./pkg/apis/application/v1alpha1/app_project_types.go:572:			tokensInStatus = proj.Status.JWTTokensByRole[role.Name].Items
+./pkg/apis/application/v1alpha1/app_project_types.go:574:		tokens := jwtTokensCombine(tokensInStatus, tokensInSpec)
+./pkg/apis/application/v1alpha1/app_project_types.go:576:		sort.Slice(proj.Spec.Roles[roleIndex].JWTTokens, func(i, j int) bool {
+./pkg/apis/application/v1alpha1/app_project_types.go:577:			return proj.Spec.Roles[roleIndex].JWTTokens[i].IssuedAt > proj.Spec.Roles[roleIndex].JWTTokens[j].IssuedAt
+./pkg/apis/application/v1alpha1/app_project_types.go:579:		sort.Slice(proj.Status.JWTTokensByRole[role.Name].Items, func(i, j int) bool {
+./pkg/apis/application/v1alpha1/app_project_types.go:580:			return proj.Status.JWTTokensByRole[role.Name].Items[i].IssuedAt > proj.Status.JWTTokensByRole[role.Name].Items[j].IssuedAt
+./pkg/apis/application/v1alpha1/app_project_types.go:582:		if !cmp.Equal(tokens, proj.Spec.Roles[roleIndex].JWTTokens) || !cmp.Equal(tokens, proj.Status.JWTTokensByRole[role.Name].Items) {
+./pkg/apis/application/v1alpha1/app_project_types.go:586:		proj.Spec.Roles[roleIndex].JWTTokens = tokens
+./pkg/apis/application/v1alpha1/app_project_types.go:587:		proj.Status.JWTTokensByRole[role.Name] = JWTTokens{Items: tokens}
+./pkg/apis/application/v1alpha1/app_project_types.go:589:	if proj.Status.JWTTokensByRole != nil {
+./pkg/apis/application/v1alpha1/app_project_types.go:590:		for role := range proj.Status.JWTTokensByRole {
+./pkg/apis/application/v1alpha1/app_project_types.go:592:				delete(proj.Status.JWTTokensByRole, role)
+./pkg/apis/application/v1alpha1/app_project_types.go:601:func jwtTokensCombine(tokens1 []JWTToken, tokens2 []JWTToken) []JWTToken {
+./pkg/apis/application/v1alpha1/app_project_types.go:602:	tokensMap := make(map[string]JWTToken)
+./pkg/apis/application/v1alpha1/app_project_types.go:607:	var tokens []JWTToken
+./pkg/apis/application/v1alpha1/zz_generated.deepcopy.go:213:	if in.JWTTokensByRole != nil {
+./pkg/apis/application/v1alpha1/zz_generated.deepcopy.go:214:		in, out := &in.JWTTokensByRole, &out.JWTTokensByRole
+./pkg/apis/application/v1alpha1/zz_generated.deepcopy.go:215:		*out = make(map[string]JWTTokens, len(*in))
+./pkg/apis/application/v1alpha1/zz_generated.deepcopy.go:2442:func (in *JWTToken) DeepCopyInto(out *JWTToken) {
+./pkg/apis/application/v1alpha1/zz_generated.deepcopy.go:2447:// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new JWTToken.
+./pkg/apis/application/v1alpha1/zz_generated.deepcopy.go:2448:func (in *JWTToken) DeepCopy() *JWTToken {
+./pkg/apis/application/v1alpha1/zz_generated.deepcopy.go:2452:	out := new(JWTToken)
+./pkg/apis/application/v1alpha1/zz_generated.deepcopy.go:2458:func (in *JWTTokens) DeepCopyInto(out *JWTTokens) {
+./pkg/apis/application/v1alpha1/zz_generated.deepcopy.go:2462:		*out = make([]JWTToken, len(*in))
+./pkg/apis/application/v1alpha1/zz_generated.deepcopy.go:2468:// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new JWTTokens.
+./pkg/apis/application/v1alpha1/zz_generated.deepcopy.go:2469:func (in *JWTTokens) DeepCopy() *JWTTokens {
+./pkg/apis/application/v1alpha1/zz_generated.deepcopy.go:2473:	out := new(JWTTokens)
+./pkg/apis/application/v1alpha1/zz_generated.deepcopy.go:3172:	if in.JWTTokens != nil {
+./pkg/apis/application/v1alpha1/zz_generated.deepcopy.go:3173:		in, out := &in.JWTTokens, &out.JWTTokens
+./pkg/apis/application/v1alpha1/zz_generated.deepcopy.go:3174:		*out = make([]JWTToken, len(*in))
+./pkg/apis/application/v1alpha1/generated.pb.go:2312:func (m *JWTToken) Reset()      { *m = JWTToken{} }
+./pkg/apis/application/v1alpha1/generated.pb.go:2313:func (*JWTToken) ProtoMessage() {}
+./pkg/apis/application/v1alpha1/generated.pb.go:2314:func (*JWTToken) Descriptor() ([]byte, []int) {
+./pkg/apis/application/v1alpha1/generated.pb.go:2317:func (m *JWTToken) XXX_Unmarshal(b []byte) error {
+./pkg/apis/application/v1alpha1/generated.pb.go:2320:func (m *JWTToken) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+./pkg/apis/application/v1alpha1/generated.pb.go:2328:func (m *JWTToken) XXX_Merge(src proto.Message) {
+./pkg/apis/application/v1alpha1/generated.pb.go:2329:	xxx_messageInfo_JWTToken.Merge(m, src)
+./pkg/apis/application/v1alpha1/generated.pb.go:2331:func (m *JWTToken) XXX_Size() int {
+./pkg/apis/application/v1alpha1/generated.pb.go:2334:func (m *JWTToken) XXX_DiscardUnknown() {
+./pkg/apis/application/v1alpha1/generated.pb.go:2335:	xxx_messageInfo_JWTToken.DiscardUnknown(m)
+./pkg/apis/application/v1alpha1/generated.pb.go:2338:var xxx_messageInfo_JWTToken proto.InternalMessageInfo
+./pkg/apis/application/v1alpha1/generated.pb.go:2340:func (m *JWTTokens) Reset()      { *m = JWTTokens{} }
+./pkg/apis/application/v1alpha1/generated.pb.go:2341:func (*JWTTokens) ProtoMessage() {}
+./pkg/apis/application/v1alpha1/generated.pb.go:2342:func (*JWTTokens) Descriptor() ([]byte, []int) {
+./pkg/apis/application/v1alpha1/generated.pb.go:2345:func (m *JWTTokens) XXX_Unmarshal(b []byte) error {
+./pkg/apis/application/v1alpha1/generated.pb.go:2348:func (m *JWTTokens) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+./pkg/apis/application/v1alpha1/generated.pb.go:2356:func (m *JWTTokens) XXX_Merge(src proto.Message) {
+./pkg/apis/application/v1alpha1/generated.pb.go:2357:	xxx_messageInfo_JWTTokens.Merge(m, src)
+./pkg/apis/application/v1alpha1/generated.pb.go:2359:func (m *JWTTokens) XXX_Size() int {
+./pkg/apis/application/v1alpha1/generated.pb.go:2362:func (m *JWTTokens) XXX_DiscardUnknown() {
+./pkg/apis/application/v1alpha1/generated.pb.go:2363:	xxx_messageInfo_JWTTokens.DiscardUnknown(m)
+./pkg/apis/application/v1alpha1/generated.pb.go:2366:var xxx_messageInfo_JWTTokens proto.InternalMessageInfo
+./pkg/apis/application/v1alpha1/generated.pb.go:4783:	proto.RegisterMapType((map[string]JWTTokens)(nil), "github.com.argoproj.argo_cd.v3.pkg.apis.application.v1alpha1.AppProjectStatus.JwtTokensByRoleEntry")
+./pkg/apis/application/v1alpha1/generated.pb.go:4870:	proto.RegisterType((*JWTToken)(nil), "github.com.argoproj.argo_cd.v3.pkg.apis.application.v1alpha1.JWTToken")
+./pkg/apis/application/v1alpha1/generated.pb.go:4871:	proto.RegisterType((*JWTTokens)(nil), "github.com.argoproj.argo_cd.v3.pkg.apis.application.v1alpha1.JWTTokens")
+./pkg/apis/application/v1alpha1/generated.pb.go:6158:	if len(m.JWTTokensByRole) > 0 {
+./pkg/apis/application/v1alpha1/generated.pb.go:6159:		keysForJWTTokensByRole := make([]string, 0, len(m.JWTTokensByRole))
+./pkg/apis/application/v1alpha1/generated.pb.go:6160:		for k := range m.JWTTokensByRole {
+./pkg/apis/application/v1alpha1/generated.pb.go:6161:			keysForJWTTokensByRole = append(keysForJWTTokensByRole, string(k))
+./pkg/apis/application/v1alpha1/generated.pb.go:6163:		github_com_gogo_protobuf_sortkeys.Strings(keysForJWTTokensByRole)
+./pkg/apis/application/v1alpha1/generated.pb.go:6164:		for iNdEx := len(keysForJWTTokensByRole) - 1; iNdEx >= 0; iNdEx-- {
+./pkg/apis/application/v1alpha1/generated.pb.go:6165:			v := m.JWTTokensByRole[string(keysForJWTTokensByRole[iNdEx])]
+./pkg/apis/application/v1alpha1/generated.pb.go:6177:			i -= len(keysForJWTTokensByRole[iNdEx])
+./pkg/apis/application/v1alpha1/generated.pb.go:6178:			copy(dAtA[i:], keysForJWTTokensByRole[iNdEx])
+./pkg/apis/application/v1alpha1/generated.pb.go:6179:			i = encodeVarintGenerated(dAtA, i, uint64(len(keysForJWTTokensByRole[iNdEx])))
+./pkg/apis/application/v1alpha1/generated.pb.go:10883:func (m *JWTToken) Marshal() (dAtA []byte, err error) {
+./pkg/apis/application/v1alpha1/generated.pb.go:10893:func (m *JWTToken) MarshalTo(dAtA []byte) (int, error) {
+./pkg/apis/application/v1alpha1/generated.pb.go:10898:func (m *JWTToken) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+./pkg/apis/application/v1alpha1/generated.pb.go:10917:func (m *JWTTokens) Marshal() (dAtA []byte, err error) {
+./pkg/apis/application/v1alpha1/generated.pb.go:10927:func (m *JWTTokens) MarshalTo(dAtA []byte) (int, error) {
+./pkg/apis/application/v1alpha1/generated.pb.go:10932:func (m *JWTTokens) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+./pkg/apis/application/v1alpha1/generated.pb.go:12304:	if len(m.JWTTokens) > 0 {
+./pkg/apis/application/v1alpha1/generated.pb.go:12305:		for iNdEx := len(m.JWTTokens) - 1; iNdEx >= 0; iNdEx-- {
+./pkg/apis/application/v1alpha1/generated.pb.go:12307:				size, err := m.JWTTokens[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+./pkg/apis/application/v1alpha1/generated.pb.go:16472:	if len(m.JWTTokensByRole) > 0 {
+./pkg/apis/application/v1alpha1/generated.pb.go:16473:		for k, v := range m.JWTTokensByRole {
+./pkg/apis/application/v1alpha1/generated.pb.go:18226:func (m *JWTToken) Size() (n int) {
+./pkg/apis/application/v1alpha1/generated.pb.go:18239:func (m *JWTTokens) Size() (n int) {
+./pkg/apis/application/v1alpha1/generated.pb.go:18765:	if len(m.JWTTokens) > 0 {
+./pkg/apis/application/v1alpha1/generated.pb.go:18766:		for _, e := range m.JWTTokens {
+./pkg/apis/application/v1alpha1/generated.pb.go:20361:	keysForJWTTokensByRole := make([]string, 0, len(this.JWTTokensByRole))
+./pkg/apis/application/v1alpha1/generated.pb.go:20362:	for k := range this.JWTTokensByRole {
+./pkg/apis/application/v1alpha1/generated.pb.go:20363:		keysForJWTTokensByRole = append(keysForJWTTokensByRole, k)
+./pkg/apis/application/v1alpha1/generated.pb.go:20365:	github_com_gogo_protobuf_sortkeys.Strings(keysForJWTTokensByRole)
+./pkg/apis/application/v1alpha1/generated.pb.go:20366:	mapStringForJWTTokensByRole := "map[string]JWTTokens{"
+./pkg/apis/application/v1alpha1/generated.pb.go:20367:	for _, k := range keysForJWTTokensByRole {
+./pkg/apis/application/v1alpha1/generated.pb.go:20368:		mapStringForJWTTokensByRole += fmt.Sprintf("%v: %v,", k, this.JWTTokensByRole[k])
+./pkg/apis/application/v1alpha1/generated.pb.go:20370:	mapStringForJWTTokensByRole += "}"
+./pkg/apis/application/v1alpha1/generated.pb.go:20372:		`JWTTokensByRole:` + mapStringForJWTTokensByRole + `,`,
+./pkg/apis/application/v1alpha1/generated.pb.go:21661:func (this *JWTToken) String() string {
+./pkg/apis/application/v1alpha1/generated.pb.go:21665:	s := strings.Join([]string{`&JWTToken{`,
+./pkg/apis/application/v1alpha1/generated.pb.go:21673:func (this *JWTTokens) String() string {
+./pkg/apis/application/v1alpha1/generated.pb.go:21677:	repeatedStringForItems := "[]JWTToken{"
+./pkg/apis/application/v1alpha1/generated.pb.go:21679:		repeatedStringForItems += strings.Replace(strings.Replace(f.String(), "JWTToken", "JWTToken", 1), `&`, ``, 1) + ","
+./pkg/apis/application/v1alpha1/generated.pb.go:21682:	s := strings.Join([]string{`&JWTTokens{`,
+./pkg/apis/application/v1alpha1/generated.pb.go:22111:	repeatedStringForJWTTokens := "[]JWTToken{"
+./pkg/apis/application/v1alpha1/generated.pb.go:22112:	for _, f := range this.JWTTokens {
+./pkg/apis/application/v1alpha1/generated.pb.go:22113:		repeatedStringForJWTTokens += strings.Replace(strings.Replace(f.String(), "JWTToken", "JWTToken", 1), `&`, ``, 1) + ","
+./pkg/apis/application/v1alpha1/generated.pb.go:22115:	repeatedStringForJWTTokens += "}"
+./pkg/apis/application/v1alpha1/generated.pb.go:22120:		`JWTTokens:` + repeatedStringForJWTTokens + `,`,
+./pkg/apis/application/v1alpha1/generated.pb.go:24222:				return fmt.Errorf("proto: wrong wireType = %d for field JWTTokensByRole", wireType)
+./pkg/apis/application/v1alpha1/generated.pb.go:24249:			if m.JWTTokensByRole == nil {
+./pkg/apis/application/v1alpha1/generated.pb.go:24250:				m.JWTTokensByRole = make(map[string]JWTTokens)
+./pkg/apis/application/v1alpha1/generated.pb.go:24253:			mapvalue := &JWTTokens{}
+./pkg/apis/application/v1alpha1/generated.pb.go:24327:					mapvalue = &JWTTokens{}
+./pkg/apis/application/v1alpha1/generated.pb.go:24347:			m.JWTTokensByRole[mapkey] = *mapvalue
+./pkg/apis/application/v1alpha1/generated.pb.go:39635:func (m *JWTToken) Unmarshal(dAtA []byte) error {
+./pkg/apis/application/v1alpha1/generated.pb.go:39658:			return fmt.Errorf("proto: JWTToken: wiretype end group for non-group")
+./pkg/apis/application/v1alpha1/generated.pb.go:39661:			return fmt.Errorf("proto: JWTToken: illegal tag %d (wire type %d)", fieldNum, wire)
+./pkg/apis/application/v1alpha1/generated.pb.go:39755:func (m *JWTTokens) Unmarshal(dAtA []byte) error {
+./pkg/apis/application/v1alpha1/generated.pb.go:39778:			return fmt.Errorf("proto: JWTTokens: wiretype end group for non-group")
+./pkg/apis/application/v1alpha1/generated.pb.go:39781:			return fmt.Errorf("proto: JWTTokens: illegal tag %d (wire type %d)", fieldNum, wire)
+./pkg/apis/application/v1alpha1/generated.pb.go:39813:			m.Items = append(m.Items, JWTToken{})
+./pkg/apis/application/v1alpha1/generated.pb.go:44293:				return fmt.Errorf("proto: wrong wireType = %d for field JWTTokens", wireType)
+./pkg/apis/application/v1alpha1/generated.pb.go:44320:			m.JWTTokens = append(m.JWTTokens, JWTToken{})
+./pkg/apis/application/v1alpha1/generated.pb.go:44321:			if err := m.JWTTokens[len(m.JWTTokens)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+./pkg/apis/application/v1alpha1/openapi_generated.go:94:		"github.com/argoproj/argo-cd/v3/pkg/apis/application/v1alpha1.JWTToken":                                schema_pkg_apis_application_v1alpha1_JWTToken(ref),
+./pkg/apis/application/v1alpha1/openapi_generated.go:95:		"github.com/argoproj/argo-cd/v3/pkg/apis/application/v1alpha1.JWTTokens":                               schema_pkg_apis_application_v1alpha1_JWTTokens(ref),
+./pkg/apis/application/v1alpha1/openapi_generated.go:222:				Description: "AppProject provides a logical grouping of applications, providing controls for: * where the apps may deploy to (cluster whitelist) * what may be deployed (repository whitelist, resource whitelist/blacklist) * who can access these applications (roles, OIDC group claims bindings) * and what they can do (RBAC policies) * automation access to these roles (JWT tokens)",
+./pkg/apis/application/v1alpha1/openapi_generated.go:512:					"jwtTokensByRole": {
+./pkg/apis/application/v1alpha1/openapi_generated.go:514:							Description: "JWTTokensByRole contains a list of JWT tokens issued for a given role",
+./pkg/apis/application/v1alpha1/openapi_generated.go:521:										Ref:     ref("github.com/argoproj/argo-cd/v3/pkg/apis/application/v1alpha1.JWTTokens"),
+./pkg/apis/application/v1alpha1/openapi_generated.go:531:			"github.com/argoproj/argo-cd/v3/pkg/apis/application/v1alpha1.JWTTokens"},
+./pkg/apis/application/v1alpha1/openapi_generated.go:4133:func schema_pkg_apis_application_v1alpha1_JWTToken(ref common.ReferenceCallback) common.OpenAPIDefinition {
+./pkg/apis/application/v1alpha1/openapi_generated.go:4137:				Description: "JWTToken holds the issuedAt and expiresAt values of a token",
+./pkg/apis/application/v1alpha1/openapi_generated.go:4166:func schema_pkg_apis_application_v1alpha1_JWTTokens(ref common.ReferenceCallback) common.OpenAPIDefinition {
+./pkg/apis/application/v1alpha1/openapi_generated.go:4170:				Description: "JWTTokens represents a list of JWT tokens",
+./pkg/apis/application/v1alpha1/openapi_generated.go:4180:										Ref:     ref("github.com/argoproj/argo-cd/v3/pkg/apis/application/v1alpha1.JWTToken"),
+./pkg/apis/application/v1alpha1/openapi_generated.go:4190:			"github.com/argoproj/argo-cd/v3/pkg/apis/application/v1alpha1.JWTToken"},
+./pkg/apis/application/v1alpha1/openapi_generated.go:5184:					"jwtTokens": {
+./pkg/apis/application/v1alpha1/openapi_generated.go:5186:							Description: "JWTTokens are a list of generated JWT tokens bound to this role",
+./pkg/apis/application/v1alpha1/openapi_generated.go:5192:										Ref:     ref("github.com/argoproj/argo-cd/v3/pkg/apis/application/v1alpha1.JWTToken"),
+./pkg/apis/application/v1alpha1/openapi_generated.go:5218:			"github.com/argoproj/argo-cd/v3/pkg/apis/application/v1alpha1.JWTToken"},
+./pkg/apis/application/v1alpha1/types.go:1302:// JWTTokens represents a list of JWT tokens
+./pkg/apis/application/v1alpha1/types.go:1303:type JWTTokens struct {
+./pkg/apis/application/v1alpha1/types.go:1304:	Items []JWTToken `json:"items,omitempty" protobuf:"bytes,1,opt,name=items"`
+./pkg/apis/application/v1alpha1/types.go:3290:	// JWTTokens are a list of generated JWT tokens bound to this role
+./pkg/apis/application/v1alpha1/types.go:3291:	JWTTokens []JWTToken `json:"jwtTokens,omitempty" protobuf:"bytes,4,rep,name=jwtTokens"`
+./pkg/apis/application/v1alpha1/types.go:3296:// JWTToken holds the issuedAt and expiresAt values of a token
+./pkg/apis/application/v1alpha1/types.go:3297:type JWTToken struct {
+./util/test/testutil.go:15:	"github.com/golang-jwt/jwt/v5"
+./util/test/testutil.go:71:// PrivateKey2 is a second RSA key used only for tests. You can use it to see if signing a JWT with a different key
+./util/test/testutil.go:138:			pubKey, err := jwt.ParseRSAPublicKeyFromPEM(Cert)
+./util/test/testutil.go:203:			pubKey, err := jwt.ParseRSAPublicKeyFromPEM(Cert)
+./util/test/testutil.go:263:	token, err := generateJWTToken(issuer)
+./util/test/testutil.go:273:// Helper function to generate a JWT token
+./util/test/testutil.go:274:func generateJWTToken(issuer string) (string, error) {
+./util/test/testutil.go:275:	token := jwt.NewWithClaims(jwt.SigningMethodRS512, jwt.MapClaims{
+./util/test/testutil.go:283:	key, err := jwt.ParseRSAPrivateKeyFromPEM(PrivateKey)
+./util/oidc/oidc.go:29:	"github.com/golang-jwt/jwt/v5"
+./util/oidc/oidc.go:40:	jwtutil "github.com/argoproj/argo-cd/v3/util/jwt"
+./util/oidc/oidc.go:545:			oauth2.SetAuthURLParam("client_assertion_type", "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"),
+./util/oidc/oidc.go:575:	var claims jwt.MapClaims
+./util/oidc/oidc.go:582:	sub := jwtutil.StringField(claims, "sub")
+./util/oidc/oidc.go:598:	sid := jwtutil.StringField(claims, "sid")
+./util/oidc/oidc.go:686:func (a *ClientApp) CheckAndRefreshToken(ctx context.Context, groupClaims jwt.MapClaims, refreshTokenThreshold time.Duration) (string, error) {
+./util/oidc/oidc.go:690:	iss := jwtutil.StringField(groupClaims, "iss")
+./util/oidc/oidc.go:691:	sub := jwtutil.StringField(groupClaims, "sub")
+./util/oidc/oidc.go:692:	sid := jwtutil.StringField(groupClaims, "sid")
+./util/oidc/oidc.go:887:// we assume that everywhere in argocd jwt.MapClaims is used as type for interface jwt.Claims
+./util/oidc/oidc.go:889:func (a *ClientApp) SetGroupsFromUserInfo(ctx context.Context, claims jwt.Claims, sessionManagerClaimsIssuer string) (jwt.MapClaims, error) {
+./util/oidc/oidc.go:890:	var groupClaims jwt.MapClaims
+./util/oidc/oidc.go:892:	if groupClaims, ok = claims.(jwt.MapClaims); !ok {
+./util/oidc/oidc.go:893:		if tmpClaims, ok := claims.(*jwt.MapClaims); ok {
+./util/oidc/oidc.go:899:	iss := jwtutil.StringField(groupClaims, "iss")
+./util/oidc/oidc.go:918:func (a *ClientApp) GetUserInfo(ctx context.Context, actualClaims jwt.MapClaims, issuerURL, userInfoPath string) (jwt.MapClaims, bool, error) {
+./util/oidc/oidc.go:922:	sub := jwtutil.StringField(actualClaims, "sub")
+./util/oidc/oidc.go:923:	var claims jwt.MapClaims
+./util/oidc/oidc.go:979:	case "application/jwt":
+./util/oidc/oidc.go:980:		// if body is JWT, first validate it before extracting claims
+./util/oidc/oidc.go:983:			return claims, false, fmt.Errorf("user info response in jwt format not valid: %w", err)
+./util/oidc/oidc.go:987:			return claims, false, fmt.Errorf("cannot get claims from userinfo jwt: %w", err)
+./util/oidc/oidc.go:1039:func GetTokenExpiration(claims jwt.MapClaims) time.Duration {
+./util/oidc/oidc.go:1041:	exp := jwtutil.Float64Field(claims, "exp")
+./util/oidc/provider.go:93:	// According to the JWT spec, the aud claim is optional. The spec also says (emphasis mine):
+./util/oidc/provider.go:96:	//   claim is present_, then the JWT MUST be rejected.
+./util/rbac/rbac.go:15:	jwtutil "github.com/argoproj/argo-cd/v3/util/jwt"
+./util/rbac/rbac.go:21:	"github.com/golang-jwt/jwt/v5"
+./util/rbac/rbac.go:126:// * supports a custom JWT claims enforce function
+./util/rbac/rbac.go:207:// ClaimsEnforcerFunc is func template to enforce a JWT claims. The subject is replaced
+./util/rbac/rbac.go:208:type ClaimsEnforcerFunc func(claims jwt.Claims, rvals ...any) bool
+./util/rbac/rbac.go:318:// can extract claims from JWT token and do the proper enforcement based on user, group or any information
+./util/rbac/rbac.go:340:			if s, ok := rvals[0].(jwt.Claims); ok {
+./util/rbac/rbac.go:341:				claims, err := jwtutil.MapClaims(s)
+./util/rbac/rbac.go:343:					userId := jwtutil.GetUserIdentifier(claims)
+./util/rbac/rbac.go:347:					if issuedAtTime, err := jwtutil.IssuedAtTime(claims); err == nil {
+./util/rbac/rbac.go:391:	// check if subject is jwt.Claims vs. a normal subject string and run custom claims
+./util/rbac/rbac.go:397:	case jwt.Claims:
+./util/helm/creds.go:15:	"github.com/golang-jwt/jwt/v5"
+./util/helm/creds.go:153:	tokenExpiry, err := getJWTExpiry(token)
+./util/helm/creds.go:155:		log.Warnf("failed to get token expiry from JWT: %v, using current time as fallback", err)
+./util/helm/creds.go:166:func getJWTExpiry(token string) (time.Time, error) {
+./util/helm/creds.go:167:	parser := jwt.NewParser()
+./util/helm/creds.go:168:	claims := jwt.MapClaims{}
+./util/helm/creds.go:169:	_, _, err := parser.ParseUnverified(token, claims)
+./util/helm/creds.go:171:		return time.Time{}, fmt.Errorf("failed to parse JWT: %w", err)
+./util/security/jwt.go:10:// parseJWT parses a jwt and returns it as json bytes.
+./util/security/jwt.go:16:func parseJWT(p string) ([]byte, error) {
+./util/security/jwt.go:19:		return nil, fmt.Errorf("malformed jwt, expected 3 parts got %d", len(parts))
+./util/security/jwt.go:23:		return nil, fmt.Errorf("malformed jwt payload: %w", err)
+./util/security/jwt.go:46:// jwtWithOnlyAudClaim represents a jwt where only the "aud" claim is present. This struct allows us to unmarshal a jwt
+./util/security/jwt.go:47:// and be confident that the only information retrieved from that jwt is the "aud" claim.
+./util/security/jwt.go:48:type jwtWithOnlyAudClaim struct {
+./util/security/jwt.go:52:// getUnverifiedAudClaim gets the "aud" claim from a jwt.
+./util/security/jwt.go:59:	payload, err := parseJWT(rawIDToken)
+./util/security/jwt.go:61:		return nil, fmt.Errorf("malformed jwt: %w", err)
+./util/security/jwt.go:63:	var token jwtWithOnlyAudClaim
+./util/security/jwt.go:70:// UnverifiedHasAudClaim returns whether the "aud" claim is present in the given JWT.
+./util/settings/settings.go:79:	// ServerSignature holds the key used to generate JWT tokens.
+./util/settings/settings.go:133:	// configured OIDC provider (either external or the bundled Dex instance). Setting this to `true` will cause JWT
+./util/settings/settings.go:2046:	// When using the bundled Dex, the audience check is required. Dex will always send JWTs with an audience.
+./util/settings/settings.go:2261:		// set JWT signature
+./util/settings/settings.go:2264:			return nil, fmt.Errorf("error setting JWT signature: %w", err)
+./util/jwt/jwt.go:1:package jwt
+./util/jwt/jwt.go:10:	jwtgo "github.com/golang-jwt/jwt/v5"
+./util/jwt/jwt.go:13:// MapClaims converts a jwt.Claims to a MapClaims
+./util/jwt/jwt.go:14:func MapClaims(claims jwtgo.Claims) (jwtgo.MapClaims, error) {
+./util/jwt/jwt.go:15:	if mapClaims, ok := claims.(*jwtgo.MapClaims); ok {
+./util/jwt/jwt.go:22:	var mapClaims jwtgo.MapClaims
+./util/jwt/jwt.go:31:func StringField(claims jwtgo.MapClaims, fieldName string) string {
+./util/jwt/jwt.go:41:func Float64Field(claims jwtgo.MapClaims, fieldName string) float64 {
+./util/jwt/jwt.go:51:func GetScopeValues(claims jwtgo.MapClaims, scopes []string) []string {
+./util/jwt/jwt.go:77:func numField(m jwtgo.MapClaims, key string) (int64, error) {
+./util/jwt/jwt.go:95:func IssuedAt(m jwtgo.MapClaims) (int64, error) {
+./util/jwt/jwt.go:100:func IssuedAtTime(m jwtgo.MapClaims) (time.Time, error) {
+./util/jwt/jwt.go:106:func ExpirationTime(m jwtgo.MapClaims) (time.Time, error) {
+./util/jwt/jwt.go:111:func Claims(in any) jwtgo.Claims {
+./util/jwt/jwt.go:112:	claims, ok := in.(jwtgo.Claims)
+./util/jwt/jwt.go:120:func IsMember(claims jwtgo.Claims, groups []string, scopes []string) bool {
+./util/jwt/jwt.go:134:func GetGroups(mapClaims jwtgo.MapClaims, scopes []string) []string {
+./util/jwt/jwt.go:143:func GetUserIdentifier(c jwtgo.MapClaims) string {
+./util/localconfig/localconfig.go:10:	"github.com/golang-jwt/jwt/v5"
+./util/localconfig/localconfig.go:68:// Claims returns the standard claims from the JWT claims
+./util/localconfig/localconfig.go:69:func (u *User) Claims() (jwt.MapClaims, error) {
+./util/localconfig/localconfig.go:70:	parser := jwt.NewParser(jwt.WithoutClaimsValidation())
+./util/localconfig/localconfig.go:71:	claims := jwt.MapClaims{}
+./util/localconfig/localconfig.go:72:	_, _, err := parser.ParseUnverified(u.AuthToken, &claims)
+./util/session/sessionmanager.go:22:	"github.com/golang-jwt/jwt/v5"
+./util/session/sessionmanager.go:35:	jwtutil "github.com/argoproj/argo-cd/v3/util/jwt"
+./util/session/sessionmanager.go:41:// SessionManager generates and validates JWT tokens for login sessions.
+./util/session/sessionmanager.go:174:// The id parameter holds an optional unique JWT token identifier and stored as a standard claim "jti" in the JWT token.
+./util/session/sessionmanager.go:177:	claims := jwt.RegisteredClaims{
+./util/session/sessionmanager.go:178:		IssuedAt:  jwt.NewNumericDate(now),
+./util/session/sessionmanager.go:180:		NotBefore: jwt.NewNumericDate(now),
+./util/session/sessionmanager.go:186:		claims.ExpiresAt = jwt.NewNumericDate(expires)
+./util/session/sessionmanager.go:206:func (mgr *SessionManager) signClaims(claims jwt.Claims) (string, error) {
+./util/session/sessionmanager.go:207:	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+./util/session/sessionmanager.go:232:func (mgr *SessionManager) Parse(tokenString string) (jwt.Claims, string, error) {
+./util/session/sessionmanager.go:237:	var claims jwt.MapClaims
+./util/session/sessionmanager.go:242:	token, err := jwt.ParseWithClaims(tokenString, &claims, func(token *jwt.Token) (any, error) {
+./util/session/sessionmanager.go:244:		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+./util/session/sessionmanager.go:253:	issuedAt, err := jwtutil.IssuedAtTime(claims)
+./util/session/sessionmanager.go:258:	subject := jwtutil.GetUserIdentifier(claims)
+./util/session/sessionmanager.go:259:	id := jwtutil.StringField(claims, "jti")
+./util/session/sessionmanager.go:266:		_, _, err = proj.GetJWTToken(role, issuedAt.Unix(), id)
+./util/session/sessionmanager.go:304:	if exp, err := jwtutil.ExpirationTime(claims); err == nil {
+./util/session/sessionmanager.go:311:				return nil, "", fmt.Errorf("could not create UUID for new JWT token: %w", err)
+./util/session/sessionmanager.go:314:				return nil, "", fmt.Errorf("could not create new JWT token: %w", err)
+./util/session/sessionmanager.go:509:	VerifyToken(ctx context.Context, token string) (jwt.Claims, string, error)
+./util/session/sessionmanager.go:555:func (mgr *SessionManager) VerifyToken(ctx context.Context, tokenString string) (jwt.Claims, string, error) {
+./util/session/sessionmanager.go:559:	parser := jwt.NewParser(jwt.WithoutClaimsValidation())
+./util/session/sessionmanager.go:560:	claims := jwt.MapClaims{}
+./util/session/sessionmanager.go:561:	_, _, err := parser.ParseUnverified(tokenString, &claims)
+./util/session/sessionmanager.go:596:				claims = jwt.MapClaims{
+./util/session/sessionmanager.go:618:		var claims jwt.MapClaims
+./util/session/sessionmanager.go:656:	switch jwtutil.StringField(mapClaims, "iss") {
+./util/session/sessionmanager.go:658:		return jwtutil.GetUserIdentifier(mapClaims)
+./util/session/sessionmanager.go:660:		e := jwtutil.StringField(mapClaims, "email")
+./util/session/sessionmanager.go:664:		return jwtutil.GetUserIdentifier(mapClaims)
+./util/session/sessionmanager.go:673:	return jwtutil.StringField(mapClaims, "iss")
+./util/session/sessionmanager.go:681:	return jwtutil.IssuedAtTime(mapClaims)
+./util/session/sessionmanager.go:690:	return jwtutil.GetUserIdentifier(mapClaims)
+./util/session/sessionmanager.go:698:	return jwtutil.GetGroups(mapClaims, scopes)
+./util/session/sessionmanager.go:701:func mapClaims(ctx context.Context) (jwt.MapClaims, bool) {
+./util/session/sessionmanager.go:702:	claims, ok := ctx.Value("claims").(jwt.Claims)
+./util/session/sessionmanager.go:706:	mapClaims, err := jwtutil.MapClaims(claims)
+./util/clusterauth/clusterauth.go:9:	"github.com/golang-jwt/jwt/v5"
+./util/clusterauth/clusterauth.go:327:	jwt.RegisteredClaims
+./util/clusterauth/clusterauth.go:332:	parser := jwt.NewParser(jwt.WithoutClaimsValidation())
+./util/clusterauth/clusterauth.go:334:	_, _, err := parser.ParseUnverified(token, &claims)
+./util/grpc/logging.go:12:	"github.com/golang-jwt/jwt/v5"
+./util/grpc/logging.go:23:		mapClaims, ok := claims.(jwt.MapClaims)
+./common/common.go:479:// TokenVerificationError is a generic error message for a failure to verify a JWT

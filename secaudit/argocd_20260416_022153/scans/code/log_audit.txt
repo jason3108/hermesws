@@ -1,0 +1,98 @@
+./cmd/argocd/commands/app.go:1779:						checkForDeleteEvent(ctx, acdClient, appFullName)
+./cmd/argocd/commands/app.go:1797:func checkForDeleteEvent(ctx context.Context, acdClient argocdclient.Client, appFullName string) {
+./gitops-engine/pkg/cache/cluster.go:179:	OnEvent(handler OnEventHandler) Unsubscribe
+./gitops-engine/pkg/cache/cluster.go:336:func (c *clusterCache) OnEvent(handler OnEventHandler) Unsubscribe {
+./gitops-engine/pkg/cache/cluster.go:858:				c.recordEvent(event.Type, obj)
+./gitops-engine/pkg/cache/cluster.go:1535:func (c *clusterCache) recordEvent(event watch.EventType, un *unstructured.Unstructured) {
+./gitops-engine/pkg/cache/cluster.go:1549:		c.processEvent(key, eventMeta{event, un})
+./gitops-engine/pkg/cache/cluster.go:1598:		c.processEvent(key, evMeta)
+./gitops-engine/pkg/cache/cluster.go:1604:func (c *clusterCache) processEvent(key kube.ResourceKey, evMeta eventMeta) {
+./gitops-engine/pkg/cache/mocks/ClusterCache.go:613:func (_mock *ClusterCache) OnEvent(handler cache.OnEventHandler) cache.Unsubscribe {
+./gitops-engine/pkg/cache/mocks/ClusterCache.go:638:func (_e *ClusterCache_Expecter) OnEvent(handler interface{}) *ClusterCache_OnEvent_Call {
+./gitops-engine/pkg/utils/kube/scheme/parser.go:45:- name: io.k8s.api.admissionregistration.v1.AuditAnnotation
+./gitops-engine/pkg/utils/kube/scheme/parser.go:358:            namedType: io.k8s.api.admissionregistration.v1.AuditAnnotation
+./gitops-engine/pkg/utils/kube/scheme/parser.go:524:- name: io.k8s.api.admissionregistration.v1alpha1.AuditAnnotation
+./gitops-engine/pkg/utils/kube/scheme/parser.go:817:            namedType: io.k8s.api.admissionregistration.v1alpha1.AuditAnnotation
+./gitops-engine/pkg/utils/kube/scheme/parser.go:894:- name: io.k8s.api.admissionregistration.v1beta1.AuditAnnotation
+./gitops-engine/pkg/utils/kube/scheme/parser.go:1177:            namedType: io.k8s.api.admissionregistration.v1beta1.AuditAnnotation
+./server/application/application.go:100:	auditLogger            *argo.AuditLogger
+./server/application/application.go:155:		auditLogger:            argo.NewAuditLogger(kubeclientset, namespace, "argocd-server", enableK8sEvent),
+./server/application/application.go:391:		s.logAppEvent(ctx, created, argo.EventReasonResourceCreated, "created application")
+./server/application/application.go:1015:			s.logAppEvent(ctx, app, argo.EventReasonResourceUpdated, "updated application spec")
+./server/application/application.go:1201:	s.logAppEvent(ctx, a, argo.EventReasonResourceDeleted, "deleted application")
+./server/application/application.go:1557:	s.logAppEvent(ctx, a, argo.EventReasonResourceUpdated, fmt.Sprintf("patched resource %s/%s '%s'", q.GetGroup(), q.GetKind(), q.GetResourceName()))
+./server/application/application.go:1598:	s.logAppEvent(ctx, a, argo.EventReasonResourceDeleted, fmt.Sprintf("deleted resource %s/%s '%s'", q.GetGroup(), q.GetKind(), q.GetResourceName()))
+./server/application/application.go:2157:	s.logAppEvent(ctx, a, argo.EventReasonOperationStarted, reason)
+./server/application/application.go:2284:	s.logAppEvent(ctx, a, argo.EventReasonOperationStarted, fmt.Sprintf("initiated rollback to %d", rollbackReq.GetId()))
+./server/application/application.go:2483:			s.logAppEvent(ctx, a, argo.EventReasonResourceUpdated, "terminated running operation")
+./server/application/application.go:2499:func (s *Server) logAppEvent(ctx context.Context, a *v1alpha1.Application, reason string, action string) {
+./server/application/application.go:2507:	s.auditLogger.LogAppEvent(a, eventInfo, message, user, eventLabels)
+./server/application/application.go:2510:func (s *Server) logResourceEvent(ctx context.Context, res *v1alpha1.ResourceNode, reason string, action string) {
+./server/application/application.go:2517:	s.auditLogger.LogResourceEvent(res, eventInfo, message, user)
+./server/application/application.go:2729:		s.logAppEvent(ctx, a, argo.EventReasonResourceActionRan, "ran action "+q.GetAction())
+./server/application/application.go:2731:		s.logAppEvent(ctx, a, argo.EventReasonResourceActionRan, fmt.Sprintf("ran action %s on resource %s/%s/%s", q.GetAction(), res.Group, res.Kind, res.Name))
+./server/application/application.go:2732:		s.logResourceEvent(ctx, res, argo.EventReasonResourceActionRan, "ran action "+q.GetAction())
+./server/project/project.go:51:	auditLogger   *argo.AuditLogger
+./server/project/project.go:63:	auditLogger := argo.NewAuditLogger(kubeclientset, ns, "argocd-server", enableK8sEvent)
+./server/project/project.go:160:	s.logEvent(ctx, prj, argo.EventReasonResourceCreated, "created token")
+./server/project/project.go:244:	s.logEvent(ctx, prj, argo.EventReasonResourceDeleted, "deleted token")
+./server/project/project.go:281:		s.logEvent(ctx, res, argo.EventReasonResourceCreated, "created project")
+./server/project/project.go:457:		s.logEvent(ctx, res, argo.EventReasonResourceUpdated, "updated project")
+./server/project/project.go:489:		s.logEvent(ctx, p, argo.EventReasonResourceDeleted, "deleted project")
+./server/project/project.go:510:func (s *Server) logEvent(ctx context.Context, a *v1alpha1.AppProject, reason string, action string) {
+./server/project/project.go:517:	s.auditLogger.LogAppProjEvent(a, eventInfo, message, user)
+./server/applicationset/applicationset.go:64:	auditLogger              *argo.AuditLogger
+./server/applicationset/applicationset.go:218:		auditLogger:              argo.NewAuditLogger(kubeclientset, namespace, "argocd-server", enableK8sEvent),
+./server/applicationset/applicationset.go:327:		s.logAppSetEvent(ctx, created, argo.EventReasonResourceCreated, "created ApplicationSet")
+./server/applicationset/applicationset.go:405:			s.logAppSetEvent(ctx, appset, argo.EventReasonResourceUpdated, "updated ApplicationSets spec")
+./server/applicationset/applicationset.go:440:	s.logAppSetEvent(ctx, appset, argo.EventReasonResourceDeleted, "deleted ApplicationSets")
+./server/applicationset/applicationset.go:596:func (s *Server) logAppSetEvent(ctx context.Context, a *v1alpha1.ApplicationSet, reason string, action string) {
+./server/applicationset/applicationset.go:603:	s.auditLogger.LogAppSetEvent(a, eventInfo, message, user)
+./pkg/apis/application/v1alpha1/openapi_generated.go:57:		"github.com/argoproj/argo-cd/v3/pkg/apis/application/v1alpha1.ApplicationWatchEvent":                   schema_pkg_apis_application_v1alpha1_ApplicationWatchEvent(ref),
+./pkg/apis/application/v1alpha1/openapi_generated.go:2580:func schema_pkg_apis_application_v1alpha1_ApplicationWatchEvent(ref common.ReferenceCallback) common.OpenAPIDefinition {
+./util/oidc/oidc.go:633:	span.AddEvent("start cache read")
+./util/oidc/oidc.go:635:	span.AddEvent("end cache read")
+./util/oidc/oidc.go:670:	span.AddEvent("start cache write")
+./util/oidc/oidc.go:678:	span.AddEvent("end cache write")
+./util/oidc/oidc.go:753:	span.AddEvent("starting tokenSource.Token()")
+./util/oidc/oidc.go:755:	span.AddEvent("finished tokenSource.Token()")
+./util/oidc/oidc.go:762:		span.AddEvent("updating cache with latest token")
+./util/db/cluster.go:163:		handleAddEvent(localCls)
+./util/db/cluster.go:179:					handleModEvent(localCls, cluster)
+./util/db/cluster.go:184:			handleAddEvent(cluster)
+./util/db/cluster.go:201:			handleModEvent(oldCluster, newCluster)
+./util/db/cluster.go:208:				handleModEvent(localCls, newLocalCls)
+./util/db/cluster.go:211:				handleDeleteEvent(string(secret.Data["server"]))
+./util/db/secrets.go:128:				handleAddEvent(secretObj)
+./util/db/secrets.go:133:				handleDeleteEvent(secretObj)
+./util/db/secrets.go:139:					handleModEvent(oldSecretObj, newSecretObj)
+./util/argo/audit_logger.go:20:type AuditLogger struct {
+./util/argo/audit_logger.go:49:func (l *AuditLogger) logEvent(objMeta ObjectRef, gvk schema.GroupVersionKind, info EventInfo, message string, logFields map[string]string, eventLabels map[string]string) {
+./util/argo/audit_logger.go:115:func (l *AuditLogger) enableK8SEventLog(info EventInfo) bool {
+./util/argo/audit_logger.go:119:func (l *AuditLogger) LogAppEvent(app *v1alpha1.Application, info EventInfo, message, user string, eventLabels map[string]string) {
+./util/argo/audit_logger.go:137:	l.logEvent(objectMeta, v1alpha1.ApplicationSchemaGroupVersionKind, info, message, fields, eventLabels)
+./util/argo/audit_logger.go:140:func (l *AuditLogger) LogAppSetEvent(app *v1alpha1.ApplicationSet, info EventInfo, message, user string) {
+./util/argo/audit_logger.go:155:	l.logEvent(objectMeta, v1alpha1.ApplicationSetSchemaGroupVersionKind, info, message, fields, nil)
+./util/argo/audit_logger.go:158:func (l *AuditLogger) LogResourceEvent(res *v1alpha1.ResourceNode, info EventInfo, message, user string) {
+./util/argo/audit_logger.go:173:	l.logEvent(objectMeta, schema.GroupVersionKind{
+./util/argo/audit_logger.go:180:func (l *AuditLogger) LogAppProjEvent(proj *v1alpha1.AppProject, info EventInfo, message, user string) {
+./util/argo/audit_logger.go:195:	l.logEvent(objectMeta, v1alpha1.AppProjectSchemaGroupVersionKind, info, message, nil, nil)
+./util/argo/audit_logger.go:198:func NewAuditLogger(kIf kubernetes.Interface, namespace, component string, enableK8sEvent []string) *AuditLogger {
+./util/argo/audit_logger.go:199:	return &AuditLogger{
+./util/webhook/webhook.go:162:				guard.RecoverAndLog(func() { a.HandleEvent(payload) }, compLog, panicMsgServer)
+./util/webhook/webhook.go:336:func (a *ArgoCDWebhookHandler) HandleEvent(payload any) {
+./applicationset/webhook/webhook.go:117:				guard.RecoverAndLog(func() { h.HandleEvent(payload) }, compLog, panicMsgAppSet)
+./applicationset/webhook/webhook.go:123:func (h *WebhookHandler) HandleEvent(payload any) {
+./controller/appcontroller.go:112:	auditLogger          *argo.AuditLogger
+./controller/appcontroller.go:206:		auditLogger:                       argo.NewAuditLogger(kubeClientset, namespace, common.CommandApplicationController, enableK8sEvent),
+./controller/appcontroller.go:1087:			ctrl.logAppEvent(context.TODO(), app, argo.EventInfo{Reason: argo.EventReasonStatusRefreshed, Type: corev1.EventTypeWarning}, message)
+./controller/appcontroller.go:1680:		ctrl.logAppEvent(context.TODO(), app, eventInfo, strings.Join(messages, " "))
+./controller/appcontroller.go:2165:		ctrl.logAppEvent(context.TODO(), orig, argo.EventInfo{Reason: argo.EventReasonResourceUpdated, Type: corev1.EventTypeNormal}, message)
+./controller/appcontroller.go:2174:		ctrl.logAppEvent(context.TODO(), orig, argo.EventInfo{Reason: argo.EventReasonResourceUpdated, Type: corev1.EventTypeNormal}, message)
+./controller/appcontroller.go:2349:	ctrl.logAppEvent(context.TODO(), app, argo.EventInfo{Reason: argo.EventReasonOperationStarted, Type: corev1.EventTypeNormal}, message)
+./controller/appcontroller.go:2753:func (ctrl *ApplicationController) logAppEvent(ctx context.Context, a *appv1.Application, eventInfo argo.EventInfo, message string) {
+./controller/appcontroller.go:2755:	ctrl.auditLogger.LogAppEvent(a, eventInfo, message, "", eventLabels)
+./controller/cache/cache.go:638:	_ = clusterCache.OnEvent(func(_ watch.EventType, un *unstructured.Unstructured) {
+./controller/cache/cache.go:824:func (c *liveStateCache) handleAddEvent(cluster *appv1.Cluster) {
+./controller/cache/cache.go:848:func (c *liveStateCache) handleModEvent(oldCluster *appv1.Cluster, newCluster *appv1.Cluster) {
+./controller/cache/cache.go:894:func (c *liveStateCache) handleDeleteEvent(clusterServer string) {

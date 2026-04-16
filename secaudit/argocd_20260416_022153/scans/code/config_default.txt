@@ -1,0 +1,20 @@
+./cmd/argocd/commands/admin/settings.go:121:				"admin.password":   []byte("test"),
+./cmd/argocd/commands/admin/settings_rbac.go:207:			if newDefaultRole != "" && defaultRole == "" {
+./cmd/argocd/commands/admin/settings_rbac.go:361:		defaultRole = ""
+./cmd/argocd/commands/admin/repo.go:70:  argocd admin repo generate-spec helm-oci-registry.cn-zhangjiakou.cr.aliyuncs.com --type helm --name stable --enable-oci --username test --password test
+./cmd/argocd/commands/admin/admin.go:68:# Reset the initial admin password
+./cmd/argocd/commands/admin/admin.go:69:$ argocd admin initial-password reset
+./cmd/argocd/commands/project.go:648:		defaultList = "deny"
+./cmd/argocd/commands/project.go:650:		defaultList = "allow"
+./test/testdata.go:136:			"admin.password":   []byte("test"),
+./gitops-engine/pkg/utils/kube/scheme/parser.go:7588:      default: admin
+./gitops-engine/pkg/utils/kube/scheme/parser.go:7622:      default: admin
+./pkg/apis/application/v1alpha1/types.go:3355:	DefaultServiceAccount string `json:"defaultServiceAccount" protobuf:"bytes,3,opt,name=defaultServiceAccount"`
+./util/rbac/rbac.go:383:	if defaultRole != "" && len(rvals) >= 2 {
+./util/security/rbac.go:9:	if defaultNS != "" && namespace != defaultNS && namespace != "" {
+./util/settings/settings.go:2238:				log.Info("Initialized admin password")
+./util/settings/accounts.go:29:	settingAdminPasswordHashKey = "admin.password"
+./util/settings/accounts.go:31:	settingAdminPasswordMtimeKey = "admin.passwordMtime"
+./util/cli/cli.go:242:	defaultEditor  = "vi"
+./util/cache/cache.go:234:	defaultCacheExpirationSrc := getFlagVal(cmd, opt, "default-cache-expiration", cmd.Flags().GetDuration)
+./controller/appcontroller.go:529:	if key.Namespace == "default" && key.Group == "" && key.Kind == kube.ServiceKind && key.Name == "kubernetes" {
