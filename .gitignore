@@ -1,6 +1,9 @@
 # Argo CD source code (large upstream repo)
 argocd-src/
 
+# Research repositories (cloned for security audit)
+repo/
+
 # Editor and OS files
 .DS_Store
 *.swp

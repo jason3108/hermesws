@@ -1,0 +1,4 @@
+=== TARGET INFO ===
+Target: AWS SSM Agent
+Path: /home/ubuntu/hermes/secaudit/ssm-agent
+Date: Thu Apr 16 08:30:50 UTC 2026
