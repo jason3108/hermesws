@@ -10,7 +10,7 @@ import os
 import html
 import secrets
 from pathlib import Path
-from urllib.parse import unquote
+from urllib.parse import unquote, urlparse, parse_qs
 from datetime import datetime
 
 PORT = 5000
@@ -25,7 +25,7 @@ sessions = {}
 
 TEXT_EXTENSIONS = {'.md', '.txt', '.py', '.js', '.html', '.css', '.json', '.yaml', '.yml', '.xml', '.sh', '.bash', '.log'}
 MARKDOWN_EXTENSIONS = {'.md'}
-DIRECT_VIEW_EXTENSIONS = {'.html', '.htm', '.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.ico', '.bmp', '.pdf'}
+DIRECT_VIEW_EXTENSIONS = {'.html', '.htm', '.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.ico', '.bmp', '.pdf', '.xls', '.xlsx'}
 
 
 def get_file_type(filename):
@@ -61,7 +61,7 @@ class FileBrowserHandler(http.server.SimpleHTTPRequestHandler):
                     return True
         return False
 
-    def generate_login_html(self, error=None):
+    def generate_login_html(self, error=None, next_path='/'):
         """Generate login page HTML."""
         error_msg = f'<p style="color:red;">{error}</p>' if error else ''
         return f'''<!DOCTYPE html>
@@ -85,6 +85,7 @@ class FileBrowserHandler(http.server.SimpleHTTPRequestHandler):
         <h1>🔐 File Browser</h1>
         {error_msg}
         <form method="POST" action="/login">
+            <input type="hidden" name="next" value="{next_path}">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
@@ -98,8 +99,15 @@ class FileBrowserHandler(http.server.SimpleHTTPRequestHandler):
         path = unquote(self.path)
 
         # Login page is always accessible
-        if path == '/login':
-            login_html = self.generate_login_html()
+        if path == '/login' or path.startswith('/login?'):
+            # Extract 'next' query parameter
+            if '?' in path:
+                parsed = urlparse(path)
+                qs = parse_qs(parsed.query)
+                next_path = qs.get('next', ['/'])[0]
+            else:
+                next_path = '/'
+            login_html = self.generate_login_html(next_path=next_path)
             self.send_response(200)
             self.send_header('Content-Type', 'text/html; charset=utf-8')
             self.send_header('Content-Length', len(login_html))
@@ -122,12 +130,12 @@ class FileBrowserHandler(http.server.SimpleHTTPRequestHandler):
 
         # Check authentication for all other requests
         if not self.check_auth():
-            login_html = self.generate_login_html()
-            self.send_response(200)
-            self.send_header('Content-Type', 'text/html; charset=utf-8')
-            self.send_header('Content-Length', len(login_html))
+            # Redirect to login page with the original path as 'next' parameter
+            next_path = path if path != '/login' else '/'
+            encoded_next = next_path if next_path == '/' else next_path
+            self.send_response(302)
+            self.send_header('Location', f'/login?next={encoded_next}')
             self.end_headers()
-            self.wfile.write(login_html.encode())
             return
 
         if path == '/':
@@ -171,14 +179,18 @@ class FileBrowserHandler(http.server.SimpleHTTPRequestHandler):
                 session_id = secrets.token_hex(16)
                 sessions[session_id] = True
 
-                # Redirect to home with session cookie
+                # Get redirect target from 'next' field, default to '/'
+                redirect_to = params.get('next', '/')
+
+                # Redirect to original page with session cookie
                 self.send_response(302)
-                self.send_header('Location', '/')
+                self.send_header('Location', redirect_to)
                 self.send_header('Set-Cookie', f'session={session_id}; Path=/')
                 self.end_headers()
             else:
-                # Login failed
-                login_html = self.generate_login_html('Invalid username or password')
+                # Login failed - preserve the 'next' parameter
+                next_path = params.get('next', '/')
+                login_html = self.generate_login_html('Invalid username or password', next_path=next_path)
                 self.send_response(200)
                 self.send_header('Content-Type', 'text/html; charset=utf-8')
                 self.send_header('Content-Length', len(login_html))
@@ -277,7 +289,7 @@ class FileBrowserHandler(http.server.SimpleHTTPRequestHandler):
             html_content = self.markdown_to_html(content, filepath)
         else:
             # Escape HTML for text files
-            html_content = self.generate_text_viewer(content, file_path.name, file_type)
+            html_content = self.generate_text_viewer(content, filepath, file_path.name, file_type)
 
         html_bytes = html_content.encode('utf-8')
         self.send_response(200)
@@ -288,6 +300,8 @@ class FileBrowserHandler(http.server.SimpleHTTPRequestHandler):
 
     def download_file(self, filepath):
         """Download a file."""
+        # URL decode the filepath (since / is encoded as %2F)
+        filepath = unquote(filepath)
         file_path = BASE_DIR / filepath
 
         # Security check
@@ -303,7 +317,26 @@ class FileBrowserHandler(http.server.SimpleHTTPRequestHandler):
             self.send_error(404, "File not found")
             return
 
-        super().do_GET()
+        # Read file content and send with proper headers
+        try:
+            with open(file_path, 'rb') as f:
+                content = f.read()
+        except IOError:
+            self.send_error(500, "Cannot read file")
+            return
+
+        # Guess content type
+        import mimetypes
+        content_type, _ = mimetypes.guess_type(str(file_path))
+        if content_type is None:
+            content_type = 'application/octet-stream'
+
+        self.send_response(200)
+        self.send_header('Content-Type', content_type)
+        self.send_header('Content-Length', len(content))
+        self.send_header('Content-Disposition', f'attachment; filename="{file_path.name}"')
+        self.end_headers()
+        self.wfile.write(content)
 
     def markdown_to_html(self, content, filepath):
         """Simple markdown to HTML conversion."""
@@ -436,13 +469,21 @@ class FileBrowserHandler(http.server.SimpleHTTPRequestHandler):
 
         body_content = '\n'.join(html_lines)
 
+        # Encode filepath for URL
+        encoded_filepath = filepath.replace('/', '%2F')
+
         # Add back/links header
         header = f'''
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding:15px;background:#f8f9fa;border-radius:8px;">
-            <div>
-                <h1 style="margin:0;color:#333;">📄 {html.escape(filepath.split('/')[-1])} <span style="font-size:0.5em;background:#d4edda;color:#155724;padding:2px 8px;border-radius:4px;vertical-align:middle;">MARKDOWN</span></h1>
+        <div style="max-width:1200px;margin:10px auto;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:15px;background:#f8f9fa;border-radius:8px;">
+                <div>
+                    <h1 style="margin:0;color:#333;">📄 {html.escape(filepath.split('/')[-1])} <span style="font-size:0.5em;background:#d4edda;color:#155724;padding:2px 8px;border-radius:4px;vertical-align:middle;">MARKDOWN</span></h1>
+                </div>
+                <div style="display:flex;gap:10px;">
+                    <a href="/" style="color:#007bff;text-decoration:none;padding:8px 16px;background:white;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.1);">← 返回列表</a>
+                    <a href="/download/{encoded_filepath}" style="color:#28a745;text-decoration:none;padding:8px 16px;background:white;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.1);border:1px solid #28a745;">⬇ 下载</a>
+                </div>
             </div>
-            <a href="/" style="color:#007bff;text-decoration:none;padding:8px 16px;background:white;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.1);">← Back to Files</a>
         </div>
         '''
 
@@ -478,16 +519,20 @@ class FileBrowserHandler(http.server.SimpleHTTPRequestHandler):
 </body>
 </html>'''
 
-    def generate_text_viewer(self, content, filename, filetype):
+    def generate_text_viewer(self, content, filepath, filename, filetype):
         """Generate HTML for text file viewing."""
         escaped_content = html.escape(content)
+        encoded_filepath = filepath.replace('/', '%2F')
 
         header = f'''
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding:15px;background:#f8f9fa;border-radius:8px;">
             <div>
                 <h1 style="margin:0;color:#333;">📄 {html.escape(filename)} <span style="font-size:0.5em;background:#d1ecf1;color:#0c5460;padding:2px 8px;border-radius:4px;vertical-align:middle;">TEXT</span></h1>
             </div>
-            <a href="/" style="color:#007bff;text-decoration:none;padding:8px 16px;background:white;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.1);">← Back to Files</a>
+            <div style="display:flex;gap:10px;">
+                <a href="/" style="color:#007bff;text-decoration:none;padding:8px 16px;background:white;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.1);">← 返回列表</a>
+                <a href="/download/{encoded_filepath}" style="color:#28a745;text-decoration:none;padding:8px 16px;background:white;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.1);border:1px solid #28a745;">⬇ 下载</a>
+            </div>
         </div>
         '''
 

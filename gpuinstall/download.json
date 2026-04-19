@@ -1,0 +1,102 @@
+{
+  "description": "Ollama + Gemma4 离线部署下载清单",
+  "created": "2026-04-19",
+  "total_estimated_size_gb": 9,
+  "items": [
+    {
+      "id": 1,
+      "name": "Ollama 主程序",
+      "version": "v0.21.0",
+      "filename": "ollama-linux-amd64-v0.21.0.tar.zst",
+      "download_url": "https://github.com/ollama/ollama/releases/download/v0.21.0/ollama-linux-amd64.tar.zst",
+      "wget_cmd": "wget https://github.com/ollama/ollama/releases/download/v0.21.0/ollama-linux-amd64.tar.zst",
+      "type": "binary",
+      "platform": "linux/amd64",
+      "estimated_size_mb": 600,
+      "description": "Ollama v0.21.0 主程序，支持 Gemma4 系列模型",
+      "install_note": "解压后移动到 /usr/bin/ollama 即可"
+    },
+    {
+      "id": 2,
+      "name": "ollama_offline_downloader.py (核心工具)",
+      "version": "latest",
+      "filename": "ollama_offline_downloader.py",
+      "source": "/home/ubuntu/hermes/code/ollama_offline_downloader.py",
+      "cp_cmd": "cp /home/ubuntu/hermes/code/ollama_offline_downloader.py /home/ubuntu/hermes/gpuinstall/",
+      "type": "python_tool",
+      "platform": "any (Python 3.8+)",
+      "estimated_size_mb": 21,
+      "description": "离线下载工具，自动从 Ollama registry 下载模型到本地目录，支持断点续传和进度显示",
+      "usage": "python3 ollama_offline_downloader.py <model>:<tag> --output ./output --workers 4",
+      "features": [
+        "自动解析 Ollama registry 获取所有 blob 下载链接",
+        "自动创建正确目录结构 (manifests/ + blobs/)",
+        "多线程并行下载",
+        "实时进度显示 (单文件 + 总体)",
+        "断点续传支持",
+        "下载完成后显示安装命令"
+      ],
+      "requires": "Python 3.8+, 无外部依赖 (仅使用标准库)"
+    },
+    {
+      "id": 3,
+      "name": "Gemma4 E4B (通过离线工具下载)",
+      "version": "e4b",
+      "download_cmd": "python3 ollama_offline_downloader.py gemma4:e4b --output ./gemma4_e4b --workers 4",
+      "estimated_size_gb": 6.7,
+      "type": "model",
+      "fits_4gb_vram": "勉强，需少量系统内存辅助",
+      "livecodebench_v6": "52%",
+      "coding_ability": "很强",
+      "description": "Gemma4 E4B，Google DeepMind 开发，推荐用于编程任务",
+      "output_structure": {
+        "manifests": "manifests/registry.ollama.ai/library/gemma4/e4b",
+        "blobs": "blobs/sha256-xxx..."
+      }
+    },
+    {
+      "id": 4,
+      "name": "Gemma4 E2B (通过离线工具下载)",
+      "version": "e2b",
+      "download_cmd": "python3 ollama_offline_downloader.py gemma4:e2b --output ./gemma4_e2b --workers 4",
+      "estimated_size_gb": 6.7,
+      "type": "model",
+      "fits_4gb_vram": "完全OK，4GB 显存无压力",
+      "livecodebench_v6": "44%",
+      "coding_ability": "良好",
+      "description": "Gemma4 E2B，备选轻量版，4GB 显存完全无压力",
+      "output_structure": {
+        "manifests": "manifests/registry.ollama.ai/library/gemma4/e2b",
+        "blobs": "blobs/sha256-xxx..."
+      }
+    }
+  ],
+  "model_selection_guide": {
+    "for_4gb_vram": {
+      "recommended": "gemma4:e2b",
+      "reason": "6.7GB 模型文件但实际运行时显存占用约 2.8GB，4GB 显存完全无压力",
+      "alternative": "gemma4:e4b (需 4.5GB 显存，可能需 CPU 内存卸载部分层)"
+    },
+    "benchmark_summary": {
+      "e4b_vs_e2b": {
+        "livecodebench_v6": "+8% (52% vs 44%)",
+        "codeforces_elo": "+307 (940 vs 633)",
+        "mmlu_pro": "+9.4% (69.4% vs 60.0%)"
+      }
+    }
+  },
+  "quick_start": {
+    "step1_download": "python3 ollama_offline_downloader.py gemma4:e2b --output ./gemma4_e2b --workers 4",
+    "step2_install_ollama": "tar -I zstd -xf ollama-linux-amd64.tar.zst && sudo mv bin/ollama /usr/bin/ollama",
+    "step3_install_model": "sudo python3 ollama_offline_downloader.py gemma4:e2b --install --output ./gemma4_e2b",
+    "step4_run": "ollama run gemma4:e2b"
+  },
+  "supported_models": [
+    "gemma4:e2b, gemma4:e4b, gemma4:26b, gemma4:31b",
+    "glm-5, glm-4.7-flash",
+    "qwen3:6b, qwen3:8b, qwen3:32b",
+    "deepseek-r1:7b, deepseek-r1:14b",
+    "llama3.2:3b, llama3.2:1b",
+    "...以及所有 ollama 库中的模型"
+  ]
+}
