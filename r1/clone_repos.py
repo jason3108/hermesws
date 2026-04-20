@@ -2,6 +2,7 @@
 """
 Big Bang Repo Cloner
 Downloads all repositories from repo.json and organizes them by project path.
+Supports cloning, updating, and listing repositories.
 """
 
 import json
@@ -13,8 +14,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 
 # Configuration
-REPO_JSON = "/home/ubuntu/hermes/r1/repo.json"
-OUTPUT_BASE = "./big-bang-repos"
+REPO_JSON = "./repo.json"
+OUTPUT_BASE = "."
 MAX_WORKERS = 5  # Number of concurrent clones
 CLONE_TIMEOUT = 300  # 5 minutes per repo
 
@@ -223,6 +224,153 @@ def clone_repos_parallel(repos, output_base, force=False, max_workers=None):
     return success_count, fail_count
 
 
+def generate_repo_list_md(json_path, data):
+    """
+    Generate a markdown file listing all repos from the JSON.
+    Output filename: <json_filename>_list.md
+    One repo per line, just the path_with_namespace.
+    """
+    # Get the base name without extension
+    json_basename = os.path.basename(json_path)
+    json_name = os.path.splitext(json_basename)[0]
+    output_md = json_name + "_list.md"
+    
+    lines = []
+    
+    # Direct projects
+    for repo in data.get('direct_projects', []):
+        lines.append(repo['path_with_namespace'])
+    
+    # Subgroups - sorted alphabetically
+    for subgroup_name in sorted(data.get('subgroups', {}).keys()):
+        subgroup_data = data['subgroups'][subgroup_name]
+        for repo in subgroup_data.get('repos', []):
+            lines.append(repo['path_with_namespace'])
+    
+    # Write to file
+    output_path = os.path.join(os.path.dirname(json_path), output_md)
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write('\n'.join(lines))
+    
+    print_success(f"Generated: {output_path}")
+    print_info(f"  Total: {len(lines)} repos")
+    
+    return output_path
+
+
+def update_repo(repo_info, output_base):
+    """
+    Update a single repository by running git pull.
+    Returns (success, message, repo_path)
+    """
+    path = repo_info['path']
+    target_dir = os.path.join(output_base, path.replace('/', os.sep))
+    
+    if not os.path.exists(target_dir):
+        return False, "Directory does not exist", target_dir
+    
+    if not os.path.isdir(os.path.join(target_dir, '.git')):
+        return False, "Not a git repository", target_dir
+    
+    try:
+        result = subprocess.run(
+            ['git', 'pull', '--ff-only'],
+            cwd=target_dir,
+            capture_output=True,
+            text=True,
+            timeout=60
+        )
+        
+        if result.returncode == 0:
+            return True, result.stdout.strip()[:100] or "Updated", target_dir
+        else:
+            return False, result.stderr.strip()[:100] or result.stdout.strip()[:100], target_dir
+            
+    except subprocess.TimeoutExpired:
+        return False, "Update timeout", target_dir
+    except Exception as e:
+        return False, str(e), target_dir
+
+
+def update_repos_sequential(repos, output_base):
+    """Update repos one by one."""
+    total = len(repos)
+    success_count = 0
+    fail_count = 0
+    skipped_count = 0
+    
+    print_header(f"Updating {total} Repositories (Sequential Mode)")
+    
+    for i, repo in enumerate(repos, 1):
+        path = repo['path']
+        target_dir = os.path.join(output_base, path.replace('/', os.sep))
+        
+        if not os.path.exists(target_dir):
+            print_warning(f"[{i}/{total}] {path} - skipped (not found)")
+            skipped_count += 1
+            continue
+        
+        if not os.path.isdir(os.path.join(target_dir, '.git')):
+            print_warning(f"[{i}/{total}] {path} - skipped (not a git repo)")
+            skipped_count += 1
+            continue
+            
+        print(f"\n[{i}/{total}] ", end="")
+        print_info(f"Updating {path}...")
+        
+        success, msg, repo_path = update_repo(repo, output_base)
+        
+        if success:
+            print_success(f"{path} -> {msg}")
+            success_count += 1
+        else:
+            print_error(f"{path}: {msg}")
+            fail_count += 1
+    
+    return success_count, fail_count, skipped_count
+
+
+def update_repos_parallel(repos, output_base, max_workers=None):
+    """Update repos in parallel using thread pool."""
+    if max_workers is None:
+        max_workers = MAX_WORKERS
+    
+    total = len(repos)
+    success_count = 0
+    fail_count = 0
+    skipped_count = 0
+    completed = 0
+    
+    print_header(f"Updating {total} Repositories (Parallel Mode, {max_workers} workers)")
+    
+    def do_update(repo):
+        return update_repo(repo, output_base)
+    
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        future_to_repo = {executor.submit(do_update, repo): repo for repo in repos}
+        
+        for future in as_completed(future_to_repo):
+            completed += 1
+            repo = future_to_repo[future]
+            path = repo['path']
+            
+            try:
+                success, msg, repo_path = future.result()
+                
+                if success:
+                    print_success(f"[{completed}/{total}] {path}")
+                    success_count += 1
+                else:
+                    print_error(f"[{completed}/{total}] {path}: {msg}")
+                    fail_count += 1
+                    
+            except Exception as e:
+                print_error(f"[{completed}/{total}] {path}: Exception - {str(e)}")
+                fail_count += 1
+    
+    return success_count, fail_count, skipped_count
+
+
 def show_summary(repos, output_base):
     """Show summary of what will be cloned."""
     total = len(repos)
@@ -260,7 +408,7 @@ def main():
     import argparse
     
     parser = argparse.ArgumentParser(
-        description='Clone Big Bang repositories from repo.json',
+        description='Clone, update, or list repositories from repo.json',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -270,6 +418,9 @@ Examples:
   %(prog)s --force            # Re-clone even if directory exists
   %(prog)s --dry-run          # Show what would be cloned without cloning
   %(prog)s --subgroup apps    # Only clone repos from 'apps' subgroup
+  %(prog)s --list             # Generate markdown list of repos
+  %(prog)s --update           # Update existing cloned repos (git pull)
+  %(prog)s --update --parallel # Update repos in parallel
         """
     )
     
@@ -280,6 +431,8 @@ Examples:
     parser.add_argument('--force', action='store_true', help='Re-clone even if directory exists')
     parser.add_argument('--dry-run', action='store_true', help='Show what would be cloned without cloning')
     parser.add_argument('--subgroup', help='Only clone repos from specific subgroup')
+    parser.add_argument('--list', action='store_true', help='Generate markdown list of all repos')
+    parser.add_argument('--update', action='store_true', help='Update existing repos with git pull')
     parser.add_argument('--stars-threshold', type=int, default=0, help='Only clone repos with >= N stars')
     
     args = parser.parse_args()
@@ -291,6 +444,47 @@ Examples:
     
     data = load_repos(args.json)
     all_repos = get_all_repos(data)
+    
+    # Handle --list mode
+    if args.list:
+        generate_repo_list_md(args.json, data)
+        sys.exit(0)
+    
+    # Handle --update mode
+    if args.update:
+        repos = all_repos
+        if args.subgroup:
+            repos = [r for r in repos if r.get('subgroup') == args.subgroup]
+            print_info(f"Filtered to {len(repos)} repos in subgroup '{args.subgroup}'")
+        
+        if not repos:
+            print_warning("No repositories to update after filtering")
+            sys.exit(0)
+        
+        print_header(f"Update Mode: {len(repos)} repositories")
+        print_info(f"Output directory: {os.path.abspath(args.output)}")
+        
+        start_time = time.time()
+        
+        if args.parallel:
+            success, fail, skipped = update_repos_parallel(repos, args.output, args.workers)
+        else:
+            success, fail, skipped = update_repos_sequential(repos, args.output)
+        
+        elapsed = time.time() - start_time
+        
+        print_header("Update Complete")
+        print(f"{BOLD}Total:{RESET} {len(repos)}")
+        print_success(f"Updated: {success}")
+        if skipped > 0:
+            print_warning(f"Skipped: {skipped}")
+        if fail > 0:
+            print_error(f"Failed: {fail}")
+        print(f"{BOLD}Time:{RESET} {elapsed:.1f} seconds")
+        
+        if fail > 0:
+            sys.exit(1)
+        sys.exit(0)
     
     print_info(f"Found {len(all_repos)} repositories in JSON")
     
